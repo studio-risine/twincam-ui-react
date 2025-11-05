@@ -1,0 +1,211 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks'
+import * as AlertStories from './alert.stories'
+
+<Meta of={AlertStories} />
+
+# Alert
+
+A component for displaying important messages that require user awareness, with support for various severity levels.
+
+## Usage
+
+```tsx
+import { Alert, AlertTitle, AlertDescription } from '@tc96/ui-react'
+
+function Example() {
+  return (
+    <Alert variant="info">
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>
+        You can add components to your app using the cli.
+      </AlertDescription>
+    </Alert>
+  )
+}
+```
+
+## Variants
+
+### Info (Default)
+<Canvas of={AlertStories.InfoVariant} />
+
+### Success
+<Canvas of={AlertStories.Success} />
+
+### Warning
+<Canvas of={AlertStories.Warning} />
+
+### Error
+<Canvas of={AlertStories.ErrorVariant} />
+
+## With Icons
+
+Icons help users quickly identify the alert type:
+
+<Canvas of={AlertStories.WithIcon} />
+
+## Flexible Content
+
+### Title Only
+<Canvas of={AlertStories.TitleOnly} />
+
+### Description Only
+<Canvas of={AlertStories.DescriptionOnly} />
+
+## Common Patterns
+
+### With Action Button
+```tsx
+import { Alert, AlertTitle, AlertDescription } from '@tc96/ui-react'
+import { Button } from '@tc96/ui-react'
+
+<Alert variant="warning">
+  <AlertCircle className="size-4" />
+  <AlertTitle>Storage Almost Full</AlertTitle>
+  <AlertDescription className="flex items-center justify-between">
+    <span>You're using 95% of your storage space.</span>
+    <Button size="sm" variant="outline" className="ml-4">
+      Upgrade
+    </Button>
+  </AlertDescription>
+</Alert>
+```
+
+### Dismissible Alert
+```tsx
+function DismissibleAlert() {
+  const [show, setShow] = React.useState(true)
+
+  if (!show) return null
+
+  return (
+    <Alert variant="info" className="relative">
+      <Info className="size-4" />
+      <AlertTitle>New Feature Available</AlertTitle>
+      <AlertDescription>
+        Check out our new dashboard analytics!
+      </AlertDescription>
+      <button
+        onClick={() => setShow(false)}
+        className="absolute top-4 right-4"
+        aria-label="Dismiss alert"
+      >
+        <X className="size-4" />
+      </button>
+    </Alert>
+  )
+}
+```
+
+### Form Validation Alert
+```tsx
+<Alert variant="error">
+  <XCircle className="size-4" />
+  <AlertTitle>Submission Failed</AlertTitle>
+  <AlertDescription>
+    <ul className="mt-2 list-disc list-inside space-y-1">
+      <li>Email address is required</li>
+      <li>Password must be at least 8 characters</li>
+    </ul>
+  </AlertDescription>
+</Alert>
+```
+
+### System Status Alert
+```tsx
+<Alert variant="success">
+  <CheckCircle className="size-4" />
+  <AlertTitle>All Systems Operational</AlertTitle>
+  <AlertDescription>
+    All services are running smoothly.{' '}
+    <a href="/status" className="underline">
+      View status page
+    </a>
+  </AlertDescription>
+</Alert>
+```
+
+### Loading/Processing Alert
+```tsx
+<Alert variant="info">
+  <Loader2 className="size-4 animate-spin" />
+  <AlertTitle>Processing Request</AlertTitle>
+  <AlertDescription>
+    Please wait while we process your payment...
+  </AlertDescription>
+</Alert>
+```
+
+## Variant Guidelines
+
+Choose the appropriate variant based on message severity:
+
+- **Info**: General information, tips, feature announcements
+- **Success**: Successful operations, confirmations, positive feedback
+- **Warning**: Important notices, potential issues, requires attention
+- **Error**: Errors, critical issues, failed operations
+
+## Accessibility
+
+Built with accessibility in mind:
+
+- Uses `role="alert"` for screen reader announcements
+- Title and description provide clear context
+- Icons reinforce visual meaning (don't rely on color alone)
+- Focus management for dismissible alerts
+- Sufficient color contrast for readability
+
+## Best Practices
+
+✅ **Do:**
+- Use appropriate variant for message severity
+- Include both title and description for clarity
+- Add relevant icons for quick recognition
+- Keep messages concise and actionable
+- Use success alerts for positive feedback
+- Stack multiple alerts with spacing
+
+❌ **Don't:**
+- Overuse alerts (causes alert fatigue)
+- Use multiple alert variants on same page without reason
+- Write overly technical error messages
+- Use alerts for non-important information
+- Nest alerts inside other components
+- Use alerts instead of inline field validation
+
+## Layout Considerations
+
+### Full Width Container
+```tsx
+<div className="container mx-auto px-4">
+  <Alert variant="info" className="mb-4">
+    <AlertTitle>Welcome back!</AlertTitle>
+    <AlertDescription>
+      You have 3 new notifications.
+    </AlertDescription>
+  </Alert>
+</div>
+```
+
+### Constrained Width
+```tsx
+<Alert variant="warning" className="max-w-2xl mx-auto">
+  <AlertTitle>Maintenance Scheduled</AlertTitle>
+  <AlertDescription>
+    System will be down on Sunday from 2-4 AM EST.
+  </AlertDescription>
+</Alert>
+```
+
+### Multiple Alerts
+```tsx
+<div className="space-y-4">
+  <Alert variant="error">...</Alert>
+  <Alert variant="warning">...</Alert>
+  <Alert variant="info">...</Alert>
+</div>
+```
+
+## Props
+
+<Controls />

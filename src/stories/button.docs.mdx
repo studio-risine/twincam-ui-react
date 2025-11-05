@@ -1,0 +1,107 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks'
+import * as ButtonStories from './button.stories'
+
+<Meta of={ButtonStories} />
+
+# Button
+
+A clickable button component with multiple variants and sizes. Supports polymorphic rendering via `asChild` prop.
+
+## Usage
+
+```tsx
+import { Button } from '@tc96/ui-react'
+
+function Example() {
+  return <Button>Click me</Button>
+}
+```
+
+## Variants
+
+### Primary (Default)
+Use for the main call-to-action on a page or section.
+
+<Canvas of={ButtonStories.Primary} />
+
+### Secondary
+Use for secondary actions that support the primary action.
+
+<Canvas of={ButtonStories.Secondary} />
+
+### Destructive
+Use for destructive or irreversible actions like "Delete" or "Remove".
+
+<Canvas of={ButtonStories.Destructive} />
+
+### Outline
+Use for actions that are less prominent but still important.
+
+<Canvas of={ButtonStories.Outline} />
+
+### Ghost
+Use for tertiary actions or when the button should blend into the background.
+
+<Canvas of={ButtonStories.Ghost} />
+
+### Link
+Use for navigation that should look like a text link.
+
+<Canvas of={ButtonStories.Link} />
+
+## Sizes
+
+Buttons come in three sizes:
+
+- **Small (sm)**: Compact UI, dense layouts
+- **Default**: Standard size for most use cases
+- **Large (lg)**: Hero sections, prominent CTAs
+
+<Canvas of={ButtonStories.Small} />
+<Canvas of={ButtonStories.Large} />
+
+## As Child (Polymorphic)
+
+Use `asChild` to render the button as any element while maintaining button styling. Useful for Next.js Links or React Router.
+
+```tsx
+import { Button } from '@tc96/ui-react'
+import Link from 'next/link'
+
+function Example() {
+  return (
+    <Button asChild>
+      <Link href="/about">About Us</Link>
+    </Button>
+  )
+}
+```
+
+## Accessibility
+
+- Uses semantic `<button>` element by default
+- Keyboard accessible (Enter and Space to activate)
+- Focus visible with ring indicator
+- For icon-only buttons, add `aria-label`:
+  ```tsx
+  <Button aria-label="Close dialog">
+    <X className="size-4" />
+  </Button>
+  ```
+
+## Best Practices
+
+✅ **Do:**
+- Use primary variant for the main action on a page
+- Limit to one primary button per section
+- Use descriptive text ("Save changes" vs "OK")
+- Add icons for clarity when appropriate
+
+❌ **Don't:**
+- Use multiple primary buttons in close proximity
+- Use destructive variant for non-destructive actions
+- Make buttons too small for touch targets (min 44x44px)
+
+## Props
+
+<Controls />

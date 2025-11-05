@@ -1,0 +1,180 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks'
+import * as CardStories from './card.stories'
+
+<Meta of={CardStories} />
+
+# Card
+
+A flexible container component for grouping related content with composable sub-components.
+
+## Usage
+
+```tsx
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from '@tc96/ui-react'
+
+function Example() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>Card description goes here</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Your content here</p>
+      </CardContent>
+    </Card>
+  )
+}
+```
+
+## Composition
+
+### Basic Card
+<Canvas of={CardStories.Default} />
+
+### With Footer
+<Canvas of={CardStories.WithFooter} />
+
+### Content Only
+<Canvas of={CardStories.ContentOnly} />
+
+### Fully Composed
+<Canvas of={CardStories.FullyComposed} />
+
+## Sub-Components
+
+- **Card**: The root container
+- **CardHeader**: Top section for title and description
+- **CardTitle**: Heading element for the card title
+- **CardDescription**: Subtitle or descriptive text
+- **CardContent**: Main content area with padding
+- **CardFooter**: Bottom section, often for actions
+
+## Common Patterns
+
+### Product Card
+```tsx
+<Card className="w-[350px]">
+  <CardHeader>
+    <CardTitle>Premium Plan</CardTitle>
+    <CardDescription>Everything you need to grow</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <div className="space-y-2">
+      <p className="font-bold text-3xl">$29<span className="text-muted-foreground text-base">/mo</span></p>
+      <ul className="space-y-2 text-sm">
+        <li>✓ Unlimited projects</li>
+        <li>✓ Priority support</li>
+        <li>✓ Advanced analytics</li>
+      </ul>
+    </div>
+  </CardContent>
+  <CardFooter>
+    <Button className="w-full">Get Started</Button>
+  </CardFooter>
+</Card>
+```
+
+### Stats Card
+```tsx
+<Card>
+  <CardHeader className="flex flex-row items-center justify-between pb-2">
+    <CardTitle className="text-sm font-medium">
+      Total Revenue
+    </CardTitle>
+    <DollarSign className="size-4 text-muted-foreground" />
+  </CardHeader>
+  <CardContent>
+    <div className="font-bold text-2xl">$45,231.89</div>
+    <p className="text-muted-foreground text-xs">
+      +20.1% from last month
+    </p>
+  </CardContent>
+</Card>
+```
+
+### Feature Card
+```tsx
+<Card>
+  <CardHeader>
+    <div className="mb-2 size-10 rounded-lg bg-primary/10 flex items-center justify-center">
+      <Zap className="size-5 text-primary" />
+    </div>
+    <CardTitle>Lightning Fast</CardTitle>
+    <CardDescription>
+      Optimized for performance and speed
+    </CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p className="text-muted-foreground text-sm">
+      Built with modern tools and best practices for optimal performance.
+    </p>
+  </CardContent>
+</Card>
+```
+
+### Interactive Card
+```tsx
+<Card className="cursor-pointer transition-colors hover:bg-accent">
+  <CardHeader>
+    <CardTitle>Project Alpha</CardTitle>
+    <CardDescription>Last updated 2 hours ago</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p className="text-sm">Click to view project details...</p>
+  </CardContent>
+</Card>
+```
+
+## Accessibility
+
+- Card is semantically a `<div>` container
+- For interactive cards, wrap in a `<button>` or `<a>` tag
+- Use proper heading hierarchy with CardTitle
+- Ensure sufficient color contrast for text
+- Add hover/focus states for clickable cards
+
+## Best Practices
+
+✅ **Do:**
+- Use consistent card sizing in grids
+- Include clear titles and descriptions
+- Group related information together
+- Use CardFooter for actions/metadata
+- Maintain consistent padding and spacing
+
+❌ **Don't:**
+- Nest cards inside cards (usually)
+- Overcrowd with too much information
+- Use cards for single pieces of data
+- Make cards too wide (max ~600px)
+- Use cards when a simpler layout works
+
+## Layout Tips
+
+### Grid Layout
+```tsx
+<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  <Card>...</Card>
+  <Card>...</Card>
+  <Card>...</Card>
+</div>
+```
+
+### Responsive Width
+```tsx
+<Card className="w-full max-w-md">
+  {/* Content */}
+</Card>
+```
+
+## Props
+
+<Controls />

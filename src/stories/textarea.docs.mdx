@@ -1,0 +1,188 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks'
+import * as TextareaStories from './textarea.stories'
+
+<Meta of={TextareaStories} />
+
+# Textarea
+
+A multi-line text input component for collecting longer-form user input.
+
+## Usage
+
+```tsx
+import { Textarea } from '@tc96/ui-react'
+
+function Example() {
+  return (
+    <div className="space-y-2">
+      <label htmlFor="message" className="text-sm font-medium">
+        Message
+      </label>
+      <Textarea
+        id="message"
+        placeholder="Enter your message..."
+        rows={4}
+      />
+    </div>
+  )
+}
+```
+
+## Variants
+
+<Canvas of={TextareaStories.Default} />
+
+### Sizes
+
+<Canvas of={TextareaStories.Small} />
+<Canvas of={TextareaStories.Large} />
+
+### States
+
+#### Disabled
+<Canvas of={TextareaStories.Disabled} />
+
+#### With Value
+<Canvas of={TextareaStories.WithValue} />
+
+## Form Integration
+
+### With Label and Helper Text
+```tsx
+<div className="space-y-2">
+  <label htmlFor="bio" className="text-sm font-medium">
+    Bio
+  </label>
+  <Textarea
+    id="bio"
+    placeholder="Tell us about yourself..."
+    rows={5}
+    aria-describedby="bio-help"
+  />
+  <p id="bio-help" className="text-muted-foreground text-sm">
+    Maximum 500 characters
+  </p>
+</div>
+```
+
+### With Character Count
+```tsx
+function TextareaWithCount() {
+  const [value, setValue] = React.useState('')
+  const maxLength = 280
+
+  return (
+    <div className="space-y-2">
+      <label htmlFor="tweet" className="text-sm font-medium">
+        Tweet
+      </label>
+      <Textarea
+        id="tweet"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        maxLength={maxLength}
+        rows={3}
+      />
+      <p className="text-muted-foreground text-sm text-right">
+        {value.length}/{maxLength}
+      </p>
+    </div>
+  )
+}
+```
+
+### With Error State
+```tsx
+<div className="space-y-2">
+  <label htmlFor="description" className="text-sm font-medium">
+    Description
+  </label>
+  <Textarea
+    id="description"
+    aria-invalid="true"
+    aria-describedby="description-error"
+    className="border-destructive"
+    rows={4}
+  />
+  <p id="description-error" className="text-destructive text-sm">
+    Description must be at least 10 characters
+  </p>
+</div>
+```
+
+## Auto-resize
+
+For auto-growing textareas, you can use a library like `react-textarea-autosize`:
+
+```tsx
+import TextareaAutosize from 'react-textarea-autosize'
+import { cn } from '@tc96/ui-react'
+
+<TextareaAutosize
+  className={cn(/* textarea styles */)}
+  minRows={3}
+  maxRows={10}
+/>
+```
+
+## Accessibility
+
+- Always use a `<label>` with `htmlFor` matching the textarea's `id`
+- Use `aria-describedby` to link helper text or error messages
+- Set `aria-invalid="true"` for invalid textareas
+- Consider `maxlength` attribute with character count feedback
+- Ensure sufficient rows for comfortable editing
+
+## Best Practices
+
+✅ **Do:**
+- Provide clear labels and helper text
+- Set appropriate `rows` value (typically 3-6)
+- Show character/word count for limited inputs
+- Use `maxlength` to prevent over-entry
+- Make resizable when appropriate
+
+❌ **Don't:**
+- Use placeholder as a replacement for labels
+- Make textareas too small (less than 3 rows)
+- Disable resize without good reason
+- Use textarea for single-line input (use Input instead)
+
+## Common Patterns
+
+### Contact Form Message
+```tsx
+<div className="space-y-2">
+  <label htmlFor="message" className="text-sm font-medium">
+    Your Message
+  </label>
+  <Textarea
+    id="message"
+    placeholder="How can we help you?"
+    rows={6}
+    required
+  />
+</div>
+```
+
+### Feedback Form
+```tsx
+<div className="space-y-2">
+  <label htmlFor="feedback" className="text-sm font-medium">
+    Additional Feedback
+  </label>
+  <Textarea
+    id="feedback"
+    placeholder="Share your thoughts... (optional)"
+    rows={4}
+    aria-describedby="feedback-help"
+  />
+  <p id="feedback-help" className="text-muted-foreground text-sm">
+    Your feedback helps us improve
+  </p>
+</div>
+```
+
+## Props
+
+<Controls />

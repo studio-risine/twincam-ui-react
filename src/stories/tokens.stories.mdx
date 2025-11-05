@@ -1,0 +1,148 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundation/Design Tokens" />
+
+# Design Tokens
+
+Design tokens are the visual design atoms of the design system. They define colors, typography, spacing, and other visual properties that components consume.
+
+## Token Categories
+
+### Color Tokens
+
+All color tokens support both light and dark themes automatically via CSS variables.
+
+#### Semantic Roles
+
+Semantic color tokens are used throughout the component library. Always use semantic tokens rather than raw colors.
+
+| Token | Purpose | Example Usage | Component Examples |
+|-------|---------|---------------|-------------------|
+| `--color-background` | Page/canvas background | Main app background | Page, Card background |
+| `--color-foreground` | Primary text color | Body text, headings | All text content |
+| `--color-primary` | Brand/CTA elements | Primary buttons, links | Button (primary variant) |
+| `--color-primary-foreground` | Text on primary | Button text | Button text |
+| `--color-secondary` | Secondary elements | Neutral badges, tags | Badge (neutral), secondary buttons |
+| `--color-secondary-foreground` | Text on secondary | Badge text | Badge text |
+| `--color-accent` | Highlight/emphasis | Feature cards, accent badges | Badge (accent), highlights |
+| `--color-accent-foreground` | Text on accent | Accent button text | Badge (accent) text |
+| `--color-muted` | Subdued backgrounds | Input backgrounds, disabled states | Input, Textarea backgrounds |
+| `--color-muted-foreground` | Subdued text | Placeholders, helper text | Placeholder, descriptions |
+| `--color-border` | Borders/dividers | Input borders, card edges | All bordered elements |
+| `--color-destructive` | Error/danger states | Delete buttons, error alerts | Button (destructive), Alert (error) |
+| `--color-destructive-foreground` | Text on destructive | Error button text | Destructive button text |
+| `--color-ring` | Focus indicators | Focus rings | All focusable elements |
+
+#### Status Colors
+
+| Token | Purpose | Component Usage |
+|-------|---------|-----------------|
+| `--color-success` | Success states | Alert (success), Badge (success) |
+| `--color-warning` | Warning states | Alert (warning), Badge (warning) |
+| `--color-error` | Error states | Alert (error), Badge (danger) |
+| `--color-info` | Info states | Alert (info) |
+
+### Typography Tokens
+
+| Token | Purpose | Value |
+|-------|---------|-------|
+| `--font-sans` | Body and UI text | Inter, sans-serif |
+| Typography scales defined via Tailwind classes: `text-sm`, `text-base`, `text-lg`, `text-xl`, etc. |
+
+### Spacing Scale
+
+Spacing follows a consistent scale accessible via Tailwind utilities. Use these for padding, margin, and gaps.
+
+| Token | Pixels | Usage Example | Common Use Cases |
+|-------|--------|---------------|------------------|
+| `0` | 0px | `p-0`, `m-0` | Reset spacing |
+| `0.5` | 2px | `p-0.5`, `gap-0.5` | Tight spacing, borders |
+| `1` | 4px | `p-1`, `m-1` | Minimal spacing |
+| `2` | 8px | `p-2`, `gap-2` | Small padding, tight gaps |
+| `3` | 12px | `p-3`, `m-3` | Compact layouts |
+| `4` | 16px | `p-4`, `gap-4` | Standard spacing (most common) |
+| `6` | 24px | `p-6`, `gap-6` | Comfortable spacing |
+| `8` | 32px | `p-8`, `gap-8` | Section padding |
+| `12` | 48px | `py-12`, `my-12` | Large section spacing |
+| `16` | 64px | `py-16`, `my-16` | Extra large spacing |
+
+**Best Practice**: Use the 4px base (spacing-4) for most component padding. Use larger values (6, 8, 12) for section and page-level spacing.
+
+### Radius Tokens
+
+Control the roundness of component corners. All components use these tokens.
+
+| Token | Value | Usage | Component Examples |
+|-------|-------|-------|-------------------|
+| `--radius-sm` | `calc(var(--radius) - 4px)` | `rounded-sm` | Small badges, tight UI |
+| `--radius-md` | `calc(var(--radius) - 2px)` | `rounded-md` | Most components (default) |
+| `--radius-lg` | `var(--radius)` (0.5rem) | `rounded-lg` | Cards, dialogs |
+| `--radius-xl` | `calc(var(--radius) + 4px)` | `rounded-xl` | Hero sections, large cards |
+| `--radius-full` | `9999px` | `rounded-full` | Pills, avatars, badges |
+
+**Customization**: Override `--radius` in your app to globally adjust all border radii:
+
+```css
+:root {
+  --radius: 0.75rem; /* Rounder design */
+}
+
+:root {
+  --radius: 0.25rem; /* More angular design */
+}
+```
+
+### Shadow/Elevation
+
+Shadows are defined via Tailwind utilities: `shadow-sm`, `shadow`, `shadow-md`, `shadow-lg`
+
+### Motion
+
+Standard durations and easings for transitions:
+
+- Duration: `150ms`, `200ms`, `300ms`
+- Easing: `ease-linear`, `ease-in-out`
+- Respects `prefers-reduced-motion` for accessibility
+
+## Usage in Components
+
+Components consume tokens automatically. You should **never** use hardcoded color or spacing values.
+
+### Good ✅
+
+```tsx
+<div className="bg-accent text-accent-foreground rounded-lg p-4">
+  Accent background with proper text color
+</div>
+```
+
+### Bad ❌
+
+```tsx
+<div style={{ background: '#ff0000', padding: '16px' }}>
+  Hardcoded values bypass theming
+</div>
+```
+
+## Customizing Tokens
+
+To customize brand colors or other tokens, override CSS variables in your app:
+
+```css
+:root {
+  --color-accent: oklch(0.67 0.16 58); /* Your brand color */
+  --radius: 1rem; /* Increase border radius globally */
+}
+```
+
+## Dark Mode
+
+Toggle dark mode by adding the `.dark` class to a parent element:
+
+```tsx
+<div className="dark">
+  {/* All tokens inside switch to dark values */}
+</div>
+```
+
+Tokens automatically adjust when inside a `.dark` context.

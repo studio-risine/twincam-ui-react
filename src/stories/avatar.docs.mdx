@@ -1,0 +1,110 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks'
+import * as AvatarStories from './avatar.stories'
+
+<Meta of={AvatarStories} />
+
+# Avatar
+
+A component for displaying user profile images with fallback support for initials or icons.
+
+## Usage
+
+```tsx
+import { Avatar } from '@tc96/ui-react'
+
+function Example() {
+  return (
+    <Avatar
+      src="https://example.com/avatar.jpg"
+      alt="Jane Doe"
+      fallback="JD"
+    />
+  )
+}
+```
+
+## With Image
+
+When a valid image URL is provided, it will be displayed.
+
+<Canvas of={AvatarStories.Default} />
+
+## With Fallback
+
+If the image fails to load or no `src` is provided, the fallback text (usually initials) will be displayed.
+
+<Canvas of={AvatarStories.Fallback} />
+
+## Sizes
+
+Avatars inherit the size from their parent container via CSS. Use utility classes to control size:
+
+```tsx
+<div className="size-8">
+  <Avatar src="/avatar.jpg" alt="User" fallback="U" />
+</div>
+
+<div className="size-12">
+  <Avatar src="/avatar.jpg" alt="User" fallback="U" />
+</div>
+
+<div className="size-16">
+  <Avatar src="/avatar.jpg" alt="User" fallback="U" />
+</div>
+```
+
+## Accessibility
+
+- Always provide `alt` text for screen readers
+- Fallback text should be concise (1-2 characters)
+- Image is decorative and doesn't need `role` when `alt` is provided
+- For interactive avatars (clickable), wrap in a button:
+  ```tsx
+  <button aria-label="View profile">
+    <Avatar src="/avatar.jpg" alt="User" fallback="U" />
+  </button>
+  ```
+
+## Best Practices
+
+✅ **Do:**
+- Use 1-2 character initials for fallback (e.g., "JD" for Jane Doe)
+- Provide meaningful alt text (user's name)
+- Use consistent sizing across your UI
+- Consider loading states for remote images
+
+❌ **Don't:**
+- Use long strings for fallback text
+- Omit alt text for accessibility
+- Use avatars for non-user entities without clear indication
+- Mix different avatar sizes in the same list
+
+## Common Patterns
+
+### User List
+```tsx
+<div className="flex items-center gap-3">
+  <div className="size-10">
+    <Avatar src="/user.jpg" alt="Jane Doe" fallback="JD" />
+  </div>
+  <div>
+    <p className="font-medium">Jane Doe</p>
+    <p className="text-muted-foreground text-sm">jane@example.com</p>
+  </div>
+</div>
+```
+
+### Avatar Group
+```tsx
+<div className="flex -space-x-2">
+  {users.map((user) => (
+    <div key={user.id} className="size-8 ring-2 ring-background">
+      <Avatar src={user.avatar} alt={user.name} fallback={user.initials} />
+    </div>
+  ))}
+</div>
+```
+
+## Props
+
+<Controls />

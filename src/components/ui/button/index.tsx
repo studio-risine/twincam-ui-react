@@ -1,5 +1,5 @@
-import { cn } from '@/lib/cn'
 import { Slot } from '@radix-ui/react-slot'
+import { cn } from '@/lib/cn'
 
 import { type ButtonProps, buttonVariants } from './button.variants'
 

@@ -1,0 +1,155 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks'
+import * as InputStories from './input.stories'
+
+<Meta of={InputStories} />
+
+# Input
+
+A text input component for collecting single-line user input with support for various types and sizes.
+
+## Usage
+
+```tsx
+import { Input } from '@tc96/ui-react'
+
+function Example() {
+  return (
+    <div className="space-y-2">
+      <label htmlFor="email" className="text-sm font-medium">
+        Email
+      </label>
+      <Input id="email" type="email" placeholder="Enter your email" />
+    </div>
+  )
+}
+```
+
+## Variants
+
+<Canvas of={InputStories.Default} />
+
+### Sizes
+
+<Canvas of={InputStories.Small} />
+<Canvas of={InputStories.Large} />
+
+### States
+
+#### Disabled
+<Canvas of={InputStories.Disabled} />
+
+#### With Value
+<Canvas of={InputStories.WithValue} />
+
+### Input Types
+
+The component supports all native HTML input types:
+
+<Canvas of={InputStories.Password} />
+
+```tsx
+<Input type="email" placeholder="email@example.com" />
+<Input type="password" placeholder="Enter password" />
+<Input type="number" placeholder="Enter amount" />
+<Input type="tel" placeholder="Phone number" />
+<Input type="url" placeholder="https://example.com" />
+```
+
+## Form Integration
+
+### With Label
+Always associate inputs with labels for accessibility:
+
+```tsx
+<div className="space-y-2">
+  <label htmlFor="username" className="text-sm font-medium">
+    Username
+  </label>
+  <Input id="username" placeholder="johndoe" />
+</div>
+```
+
+### With Error State
+```tsx
+<div className="space-y-2">
+  <label htmlFor="email" className="text-sm font-medium">
+    Email
+  </label>
+  <Input
+    id="email"
+    type="email"
+    aria-invalid="true"
+    aria-describedby="email-error"
+    className="border-destructive"
+  />
+  <p id="email-error" className="text-destructive text-sm">
+    Please enter a valid email address
+  </p>
+</div>
+```
+
+### With Helper Text
+```tsx
+<div className="space-y-2">
+  <label htmlFor="password" className="text-sm font-medium">
+    Password
+  </label>
+  <Input
+    id="password"
+    type="password"
+    aria-describedby="password-help"
+  />
+  <p id="password-help" className="text-muted-foreground text-sm">
+    Must be at least 8 characters
+  </p>
+</div>
+```
+
+## Accessibility
+
+- Always use a `<label>` with `htmlFor` matching the input's `id`
+- Use `aria-describedby` to link helper text or error messages
+- Set `aria-invalid="true"` for invalid inputs
+- Use appropriate `type` attribute for better mobile keyboards
+- Ensure color is not the only indicator of errors
+
+## Best Practices
+
+✅ **Do:**
+- Provide clear, concise labels
+- Use placeholder text as hints, not labels
+- Show validation feedback inline
+- Use appropriate input types for better UX
+- Make touch targets large enough (min 44x44px)
+
+❌ **Don't:**
+- Use placeholder as a replacement for labels
+- Disable autocomplete without good reason
+- Use inputs for non-text data (use appropriate components)
+- Make required fields unclear
+
+## Common Patterns
+
+### Search Input
+```tsx
+<div className="relative">
+  <Search className="absolute top-3 left-3 size-4 text-muted-foreground" />
+  <Input
+    type="search"
+    placeholder="Search..."
+    className="pl-9"
+  />
+</div>
+```
+
+### Input with Button
+```tsx
+<div className="flex gap-2">
+  <Input placeholder="Enter email" type="email" />
+  <Button>Subscribe</Button>
+</div>
+```
+
+## Props
+
+<Controls />
