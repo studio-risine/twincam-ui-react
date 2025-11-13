@@ -43,7 +43,6 @@ The button component supports multiple visual variants:
 - **`sm`** - Small button (height: 32px)
 - **`base`** (default) - Base button (height: 40px)
 - **`lg`** - Large button (height: 48px)
-- **`icon`** - Square icon button (36x36px)
 
 ### Examples
 
@@ -51,9 +50,6 @@ The button component supports multiple visual variants:
 <Button size="sm">Small</Button>
 <Button size="base">Base</Button>
 <Button size="lg">Large</Button>
-<Button size="icon">
-  <IconComponent />
-</Button>
 ```
 
 ## Disabled State
@@ -94,7 +90,7 @@ export function Example() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `variant` | `'solid' \| 'outline' \| 'ghost' \| 'link' \| 'destructive'` | `'solid'` | Visual style variant |
-| `size` | `'sm' \| 'base' \| 'lg' \| 'icon'` | `'base'` | Button size |
+| `size` | `'sm' \| 'base' \| 'lg' \| 'base'` | Button size |
 | `asChild` | `boolean` | `false` | Render as child element (uses Radix Slot) |
 | `disabled` | `boolean` | `false` | Disable the button |
 | `className` | `string` | - | Additional CSS classes |

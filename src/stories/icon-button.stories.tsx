@@ -1,41 +1,60 @@
-import { Button } from '@/components/ui/button'
+import { IconButton } from '@/components/ui/icon-button'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, userEvent, within } from '@storybook/test'
+import { expect, fn, userEvent, within } from '@storybook/test'
 
 const meta = {
-	component: Button,
+	component: IconButton,
 	tags: ['autodocs'],
-	title: 'Components/Button',
-} satisfies Meta<typeof Button>
+	title: 'Components/IconButton',
+} satisfies Meta<typeof IconButton>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
 	args: {
-		children: 'Default',
+		'aria-label': 'Search',
+		children: '⚡︎',
 		variant: 'solid',
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
+		const button = canvas.getByRole('button', { name: 'Search' })
 
-		const button = canvas.getByRole('button', { name: 'Default' })
-
-		await expect(button).toHaveAttribute('data-slot', 'button')
-		await expect(button).toHaveTextContent('Default')
+		await expect(button).toHaveAttribute('data-slot', 'icon-button')
+		await expect(button).toHaveAttribute('aria-label', 'Search')
 		await expect(button).not.toBeDisabled()
-		await expect(button).toHaveStyle({ height: '40px' })
+	},
+}
+
+export const Solid: Story = {
+	args: {
+		'aria-label': 'Heart',
+		children: '⚡︎',
+		onClick: fn(),
+		variant: 'solid',
+	},
+	play: async ({ canvasElement, args }) => {
+		const canvas = within(canvasElement)
+		const button = canvas.getByRole('button', { name: 'Heart' })
+
+		await expect(button).toHaveClass(/bg-accent/)
+
+		await userEvent.click(button)
+		await expect(args.onClick).toHaveBeenCalledTimes(1)
 	},
 }
 
 export const Outline: Story = {
 	args: {
-		children: 'Outline',
+		'aria-label': 'Settings',
+		children: '⚡︎',
+		onClick: fn(),
 		variant: 'outline',
 	},
 	play: async ({ canvasElement, args }) => {
 		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button', { name: 'Outline' })
+		const button = canvas.getByRole('button', { name: 'Settings' })
 
 		await expect(button).toHaveClass(/border/)
 		await expect(button).toHaveClass(/bg-transparent/)
@@ -45,30 +64,16 @@ export const Outline: Story = {
 	},
 }
 
-export const Destructive: Story = {
-	args: {
-		children: 'Destructive',
-		variant: 'destructive',
-	},
-	play: async ({ canvasElement, args }) => {
-		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button', { name: 'Destructive' })
-
-		await expect(button).toHaveClass(/bg-destructive/)
-
-		await userEvent.click(button)
-		await expect(args.onClick).toHaveBeenCalledTimes(1)
-	},
-}
-
 export const Ghost: Story = {
 	args: {
-		children: 'Ghost',
+		'aria-label': 'Menu',
+		children: '☰',
+		onClick: fn(),
 		variant: 'ghost',
 	},
 	play: async ({ canvasElement, args }) => {
 		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button', { name: 'Ghost' })
+		const button = canvas.getByRole('button', { name: 'Menu' })
 
 		await expect(button).toHaveClass(/hover:bg-accent/)
 
@@ -77,32 +82,36 @@ export const Ghost: Story = {
 	},
 }
 
-export const Link: Story = {
+export const Destructive: Story = {
 	args: {
-		children: 'Link',
-		variant: 'link',
+		'aria-label': 'Delete',
+		children: '⚡︎',
+		onClick: fn(),
+		variant: 'destructive',
 	},
 	play: async ({ canvasElement, args }) => {
 		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button', { name: 'Link' })
+		const button = canvas.getByRole('button', { name: 'Delete' })
 
-		await expect(button).toHaveClass(/underline-offset-4/)
+		// Verify destructive variant styling
+		await expect(button).toHaveClass(/bg-destructive/)
 
 		await userEvent.click(button)
-		await expect(args.onClick).toHaveBeenCalled()
+		await expect(args.onClick).toHaveBeenCalledTimes(1)
 	},
 }
 
 export const Disabled: Story = {
 	args: {
 		'aria-disabled': 'true',
-		children: 'Disabled',
+		'aria-label': 'Disabled button',
+		children: '⚡︎',
 		disabled: true,
 		variant: 'solid',
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button')
+		const button = canvas.getByRole('button', { name: 'Disabled button' })
 
 		await expect(button).toBeDisabled()
 		await expect(button).toHaveAttribute('disabled')
@@ -113,18 +122,18 @@ export const Disabled: Story = {
 	},
 }
 
-// Size Variants
 export const Small: Story = {
 	args: {
-		children: 'Small Button',
+		'aria-label': 'Small icon button',
+		children: '⚡︎',
 		size: 'sm',
 		variant: 'solid',
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button', { name: 'Small Button' })
+		const button = canvas.getByRole('button', { name: 'Small icon button' })
 
-		await expect(button).toHaveClass(/h-8/)
+		await expect(button).toHaveClass(/size-8/)
 		await expect(button).toHaveClass(/rounded-md/)
 		await expect(button).not.toBeDisabled()
 	},
@@ -132,30 +141,32 @@ export const Small: Story = {
 
 export const Base: Story = {
 	args: {
-		children: 'Base Button',
+		'aria-label': 'Base icon button',
+		children: '⚡︎',
 		size: 'base',
 		variant: 'solid',
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button', { name: 'Base Button' })
+		const button = canvas.getByRole('button', { name: 'Base icon button' })
 
-		await expect(button).toHaveClass(/h-10/)
+		await expect(button).toHaveClass(/size-10/)
 		await expect(button).not.toBeDisabled()
 	},
 }
 
 export const Large: Story = {
 	args: {
-		children: 'Large Button',
+		'aria-label': 'Large icon button',
+		children: '⚡︎',
 		size: 'lg',
 		variant: 'solid',
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button', { name: 'Large Button' })
+		const button = canvas.getByRole('button', { name: 'Large icon button' })
 
-		await expect(button).toHaveClass(/h-12/)
+		await expect(button).toHaveClass(/size-12/)
 		await expect(button).toHaveClass(/rounded-md/)
 		await expect(button).not.toBeDisabled()
 	},
