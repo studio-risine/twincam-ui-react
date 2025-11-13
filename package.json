@@ -25,17 +25,30 @@
     "dev": "storybook dev -p 6006",
     "build": "tsup",
     "build:storybook": "storybook build",
-    "lint": "biome check .",
-    "lint:fix": "biome check . --write",
-    "lint:staged": "biome check . --staged --write",
-    "lint:ci": "biome ci",
     "serve": "vite preview",
+		"lint:check": "biome check .",
+		"lint:fix": "biome check --write .",
+		"lint:format": "biome format --write .",
+		"lint:staged": "biome check . --staged --fix",
+		"lint:ci": "biome check --error-on-warnings .",
     "prepare": "husky",
     "test:ci": "echo 'No error found'",
     "check:type": "tsc --noEmit",
     "check:updates": "npm-check-updates -i --color"
   },
-  "dependencies": {
+	"lint-staged": {
+		"src/**/*.{ts,tsx,js,jsx}": [
+			"biome check --write"
+		],
+		"src/**/*.{json}": [
+			"biome format --write"
+		]
+	},
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+	"dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-slot": "^1.2.4",
     "@tailwindcss/vite": "^4.1.17",
@@ -45,10 +58,6 @@
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.17",
     "tailwindcss-animate": "^1.0.7"
-  },
-  "peerDependencies": {
-    "react": ">=19",
-    "react-dom": ">=19"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.4",
@@ -66,7 +75,8 @@
     "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.22",
     "globals": "^16.5.0",
-    "husky": "9.1.7",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.1.5",
     "npm-check-updates": "^19.1.2",
     "storybook": "^10.0.7",
     "tsup": "^8.5.1",
