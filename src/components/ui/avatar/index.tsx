@@ -12,6 +12,8 @@ const Avatar = forwardRef<ComponentRef<typeof AvatarPrimitive.Root>, AvatarProps
 	({ className, size, ...props }, ref) => (
 		<AvatarPrimitive.Root
 			className={cn(avatarVariants({ className, size }))}
+			data-slot="avatar"
+			data-testid="avatar"
 			ref={ref}
 			{...props}
 		/>
@@ -23,7 +25,12 @@ const AvatarImage = forwardRef<
 	ComponentRef<typeof AvatarPrimitive.Image>,
 	ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
 >(({ className, ...props }, ref) => (
-	<AvatarPrimitive.Image className={cn(avatarImageVariants({ className }))} ref={ref} {...props} />
+	<AvatarPrimitive.Image
+		className={cn(avatarImageVariants({ className }))}
+		data-slot="avatar-image"
+		ref={ref}
+		{...props}
+	/>
 ))
 AvatarImage.displayName = AvatarPrimitive.Image.displayName
 
@@ -33,6 +40,7 @@ const AvatarFallback = forwardRef<
 >(({ className, ...props }, ref) => (
 	<AvatarPrimitive.Fallback
 		className={cn(avatarFallbackVariants({ className }))}
+		data-slot="avatar-fallback"
 		ref={ref}
 		{...props}
 	/>
