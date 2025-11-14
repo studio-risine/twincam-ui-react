@@ -8,7 +8,7 @@ interface InputProps
 		VariantProps<typeof inputVariants> {}
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-	({ className, type, size, ...props }, ref) => {
+	({ className, type = 'text', size, ...props }, ref) => {
 		return (
 			<input
 				className={cn(inputVariants({ className, size }))}
