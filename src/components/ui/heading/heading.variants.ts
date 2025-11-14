@@ -1,7 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
-export type HeadingProps = VariantProps<typeof headingVariants>
-
 export const headingVariants = cva('font-semibold text-foreground', {
 	defaultVariants: {
 		size: 'base',
