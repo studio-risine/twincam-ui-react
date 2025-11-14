@@ -1,6 +1,18 @@
-# tc⚡96 - React component library
+
+<div align="center">
+
+# @tc⚡96/ui-config
+
+[![npm version](https://img.shields.io/npm/v/@tc96/ui-react?style=flat&colorA=18181B&colorB=0EA5E9)](https://www.npmjs.com/package/@tc96/ui-react)
+[![npm downloads](https://img.shields.io/npm/dm/@tc96/ui-react?style=flat&colorA=18181B&colorB=0EA5E9)](https://www.npmjs.com/package/@tc96/ui-react)
+[![CI](https://github.com/gblsmlo/tc96-design-system/workflows/ci/badge.svg)](https://github.com/gblsmlo/tc96-design-system/actions)
+[![License](https://img.shields.io/github/license/gblsmlo/tc96-design-system?style=flat&colorA=18181B&colorB=0EA5E9)](https://github.com/gblsmlo/tc96-design-system/blob/main/LICENSE)
 
 A modern, accessible React component library for product teams. Built on Tailwind CSS v4, Radix UI primitives, and class-variance-authority, and distributed as `@tc96/ui-react`.
+
+</div>
+
+
 
 ## Overview
 - Consistent, themeable UI components powered by Tailwind v4 tokens (OKLCH).
