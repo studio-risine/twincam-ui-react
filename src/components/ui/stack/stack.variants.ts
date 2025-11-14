@@ -1,7 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
-export type StackProps = VariantProps<typeof stackVariants>
-
 export const stackVariants = cva('flex flex-col', {
 	defaultVariants: {
 		align: 'stretch',
