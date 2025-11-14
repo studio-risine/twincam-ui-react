@@ -1,6 +1,6 @@
-import { cva, type VariantProps } from 'class-variance-authority'
+import { cva } from 'class-variance-authority'
 
-const badgeVariants = cva(
+export const badgeVariants = cva(
 	'inline-flex items-center rounded-full border px-2.5 py-0.5 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
 	{
 		defaultVariants: {
@@ -18,5 +18,3 @@ const badgeVariants = cva(
 		},
 	},
 )
-
-export { badgeVariants }

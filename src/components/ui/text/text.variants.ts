@@ -1,4 +1,4 @@
-import { cva, type VariantProps } from 'class-variance-authority'
+import { cva } from 'class-variance-authority'
 
 export const textVariants = cva('leading-normal text-foreground', {
 	defaultVariants: {

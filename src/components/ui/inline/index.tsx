@@ -11,8 +11,8 @@ export type InlineProps = ComponentPropsWithoutRef<'div'> &
 		as?: InlineElement
 	}
 
-export const Inline = forwardRef<HTMLElement, InlineProps>(
-	({ className, space, align, justify, wrap, as, ...props }) => {
+export const Inline = forwardRef<HTMLDivElement, InlineProps>(
+	({ className, space, align, justify, wrap, as, ...props }, ref) => {
 		const Component: ElementType = as || 'div'
 
 		return (
@@ -20,6 +20,7 @@ export const Inline = forwardRef<HTMLElement, InlineProps>(
 				className={cn(inlineVariants({ align, justify, space, wrap }), className)}
 				data-slot="inline"
 				data-testid="inline"
+				ref={ref}
 				{...props}
 			/>
 		)

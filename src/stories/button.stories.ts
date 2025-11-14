@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Button, type ButtonProps } from '@/components/ui/button'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, within } from 'storybook/test'
 
@@ -12,7 +12,7 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	title: 'Components/Button',
-} satisfies Meta<typeof Button>
+} satisfies Meta<ButtonProps>
 
 export default meta
 type Story = StoryObj<typeof meta>
