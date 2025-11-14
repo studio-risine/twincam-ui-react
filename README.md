@@ -1,7 +1,7 @@
 
 <div align="center">
 
-# @tc⚡96/ui-config
+# @tc⚡96/ui-react
 
 [![npm version](https://img.shields.io/npm/v/@tc96/ui-react?style=flat&colorA=18181B&colorB=0EA5E9)](https://www.npmjs.com/package/@tc96/ui-react)
 [![npm downloads](https://img.shields.io/npm/dm/@tc96/ui-react?style=flat&colorA=18181B&colorB=0EA5E9)](https://www.npmjs.com/package/@tc96/ui-react)
@@ -34,7 +34,7 @@ A modern, accessible React component library for product teams. Built on Tailwin
 - Theming: first-class token support using OKLCH and Tailwind v4.
 - Ergonomics: simple, composable APIs with typed variants and sensible defaults.
 
-## Installation (Consumers)
+## Installation
 Install the package in your app:
 
 ```sh
@@ -99,7 +99,7 @@ Explore stories via `pnpm dev`.
 
 ## Contributing & Issues
 - Found a bug or have a request? Open an issue:
-  - https://github.com/gblsmlo/tc96-design-system/issues
+  - https://github.com/gblsmlo/tc96-ui-react/issues
 - Pull Requests are welcome. Please run `pnpm check:type` and `pnpm lint:fix` before submitting.
 
 ## Versioning & Releases
