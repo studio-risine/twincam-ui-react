@@ -17,10 +17,9 @@ export const buttonVariants = cva(
 			},
 			variant: {
 				destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-				ghost: 'text-accent hover:bg-accent hover:text-accent-foreground',
+				ghost: 'text-accent hover:bg-accent/10 hover:text-accent',
 				link: 'text-accent underline-offset-4 hover:underline',
-				outline:
-					'border border-accent/20 bg-transparent hover:bg-accent hover:text-accent-foreground text-accent',
+				outline: 'border border-accent/20 bg-accent/10 hover:bg-accent/20 text-accent',
 				solid: 'bg-accent text-accent-foreground hover:bg-accent/80',
 			},
 		},
