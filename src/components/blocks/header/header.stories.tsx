@@ -1,4 +1,5 @@
 import { Header, HeaderCenter, HeaderLeft, HeaderRight } from '@/components/blocks/header'
+import { TwincamLogo } from '@/components/twincam-logo'
 import { Button } from '@/components/ui/button'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Sun } from 'lucide-react'
@@ -28,26 +29,29 @@ export const Default: Story = {
 	render: () => (
 		<Header>
 			<HeaderLeft>
-				<div className="h-8 w-8 rounded-full bg-primary" />
+				<TwincamLogo />
 			</HeaderLeft>
 			<HeaderCenter>
 				<nav className="flex gap-6">
-					<a className="font-medium text-sm hover:text-primary" href="/">
+					<a className="font-semibold text-base text-primary hover:text-primary/80" href="/">
 						Home
 					</a>
-					<a className="font-medium text-sm hover:text-primary" href="/features">
+					<a
+						className="font-semibold text-base text-primary hover:text-primary/80"
+						href="/features"
+					>
 						Features
 					</a>
-					<a className="font-medium text-sm hover:text-primary" href="/pricing">
+					<a className="font-semibold text-base text-primary hover:text-primary/80" href="/pricing">
 						Pricing
 					</a>
 				</nav>
 			</HeaderCenter>
 			<HeaderRight>
-				<Button size="sm" variant="ghost">
+				<Button variant="ghost">
 					<Sun className="h-4 w-4" />
 				</Button>
-				<Button size="sm">Download</Button>
+				<Button>Download</Button>
 			</HeaderRight>
 		</Header>
 	),
@@ -58,66 +62,26 @@ export const WithAuthButtons: Story = {
 	render: () => (
 		<Header>
 			<HeaderLeft>
-				<div className="h-8 w-8 rounded-full bg-primary" />
-				<span className="font-bold text-lg">Brand</span>
+				<TwincamLogo />
 			</HeaderLeft>
 			<HeaderCenter>
 				<nav className="flex gap-6">
-					<a className="font-medium text-sm hover:text-primary" href="/">
+					<a className="font-semibold text-base text-primary hover:text-primary/80" href="/">
 						Home
 					</a>
-					<a className="font-medium text-sm hover:text-primary" href="/features">
+					<a
+						className="font-semibold text-base text-primary hover:text-primary/80"
+						href="/features"
+					>
 						Features
 					</a>
 				</nav>
 			</HeaderCenter>
 			<HeaderRight>
-				<Button size="sm" variant="ghost">
-					Login
-				</Button>
-				<Button size="sm">Sign Up</Button>
-			</HeaderRight>
-		</Header>
-	),
-}
-
-export const GhostVariant: Story = {
-	args: { children: null },
-	render: () => (
-		<div className="bg-zinc-900 p-8">
-			<Header variant="ghost">
-				<HeaderLeft className="text-white">
-					<div className="h-8 w-8 rounded-full bg-white" />
-					<span className="font-bold text-lg">Brand</span>
-				</HeaderLeft>
-				<HeaderCenter>
-					<nav className="flex gap-6">
-						<a className="font-medium text-sm text-white hover:text-white/80" href="/">
-							Home
-						</a>
-					</nav>
-				</HeaderCenter>
-				<HeaderRight>
-					<Button size="sm" variant="ghost">
-						Login
-					</Button>
-					<Button size="sm">Sign Up</Button>
-				</HeaderRight>
-			</Header>
-		</div>
-	),
-}
-
-export const Minimal: Story = {
-	args: { children: null },
-	render: () => (
-		<Header>
-			<HeaderLeft>
-				<div className="h-8 w-8 rounded-full bg-primary" />
-				<span className="font-bold text-lg">Brand</span>
-			</HeaderLeft>
-			<HeaderRight>
-				<Button size="sm">Get Started</Button>
+				<div className="flex gap-2">
+					<Button variant="secondary">Login</Button>
+					<Button>Sign Up</Button>
+				</div>
 			</HeaderRight>
 		</Header>
 	),

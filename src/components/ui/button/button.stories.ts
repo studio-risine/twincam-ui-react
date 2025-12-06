@@ -17,24 +17,65 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Primary: Story = {
 	args: {
-		children: 'Default',
-		variant: 'solid',
+		children: 'Primary',
+		variant: 'primary',
 	},
 	play: async ({ canvasElement, userEvent, args }) => {
 		const canvas = within(canvasElement)
-
-		const button = canvas.getByRole('button', { name: 'Default' })
+		const button = canvas.getByRole('button', { name: 'Primary' })
 
 		await expect(button).toHaveAttribute('data-slot', 'button')
-		await expect(button).toHaveTextContent('Default')
-		await expect(button).toHaveStyle({ height: '40px' })
+		await expect(button).toHaveTextContent('Primary')
+		await expect(button).toHaveClass(/bg-primary/)
 
 		await expect(button).not.toBeDisabled()
 
 		await userEvent.click(button)
 		await expect(args.onClick).toHaveBeenCalledTimes(1)
+	},
+}
+
+export const Secondary: Story = {
+	args: {
+		children: 'Secondary',
+		variant: 'secondary',
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement)
+		const button = canvas.getByRole('button', { name: 'Secondary' })
+
+		await expect(button).toHaveClass(/bg-secondary/)
+		await expect(button).toHaveClass(/text-secondary-foreground/)
+	},
+}
+
+export const Accent: Story = {
+	args: {
+		children: 'Accent',
+		variant: 'accent',
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement)
+		const button = canvas.getByRole('button', { name: 'Accent' })
+
+		await expect(button).toHaveClass(/bg-accent/)
+		await expect(button).toHaveClass(/text-accent-foreground/)
+	},
+}
+
+export const Destructive: Story = {
+	args: {
+		children: 'Destructive',
+		variant: 'destructive',
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement)
+		const button = canvas.getByRole('button', { name: 'Destructive' })
+
+		await expect(button).toHaveClass(/bg-destructive/)
+		await expect(button).toHaveClass(/text-destructive-foreground/)
 	},
 }
 
@@ -49,19 +90,7 @@ export const Outline: Story = {
 
 		await expect(button).toHaveClass(/border/)
 		await expect(button).toHaveClass(/bg-transparent/)
-	},
-}
-
-export const Destructive: Story = {
-	args: {
-		children: 'Destructive',
-		variant: 'destructive',
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button', { name: 'Destructive' })
-
-		await expect(button).toHaveClass(/bg-destructive/)
+		await expect(button).toHaveClass(/text-accent/)
 	},
 }
 
@@ -74,6 +103,7 @@ export const Ghost: Story = {
 		const canvas = within(canvasElement)
 		const button = canvas.getByRole('button', { name: 'Ghost' })
 
+		await expect(button).toHaveClass(/text-accent/)
 		await expect(button).toHaveClass(/hover:bg-accent/)
 	},
 }
@@ -87,7 +117,55 @@ export const Link: Story = {
 		const canvas = within(canvasElement)
 		const button = canvas.getByRole('button', { name: 'Link' })
 
+		await expect(button).toHaveClass(/text-accent/)
 		await expect(button).toHaveClass(/underline-offset-4/)
+	},
+}
+
+export const Small: Story = {
+	args: {
+		children: 'Small Button',
+		size: 'sm',
+		variant: 'primary',
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement)
+		const button = canvas.getByRole('button', { name: 'Small Button' })
+
+		await expect(button).toHaveClass(/h-9/)
+		await expect(button).toHaveClass(/rounded-md/)
+		await expect(button).toHaveClass(/px-3/)
+	},
+}
+
+export const Base: Story = {
+	args: {
+		children: 'Base Button',
+		size: 'base',
+		variant: 'primary',
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement)
+		const button = canvas.getByRole('button', { name: 'Base Button' })
+
+		await expect(button).toHaveClass(/h-10/)
+		await expect(button).toHaveClass(/px-4/)
+	},
+}
+
+export const Large: Story = {
+	args: {
+		children: 'Large Button',
+		size: 'lg',
+		variant: 'primary',
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement)
+		const button = canvas.getByRole('button', { name: 'Large Button' })
+
+		await expect(button).toHaveClass(/h-12/)
+		await expect(button).toHaveClass(/rounded-md/)
+		await expect(button).toHaveClass(/px-6/)
 	},
 }
 
@@ -96,7 +174,7 @@ export const Disabled: Story = {
 		'aria-disabled': 'true',
 		children: 'Disabled',
 		disabled: true,
-		variant: 'solid',
+		variant: 'primary',
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
@@ -108,49 +186,5 @@ export const Disabled: Story = {
 
 		await expect(button).toHaveClass(/disabled:bg-slate-300/)
 		await expect(button).toHaveClass(/disabled:text-slate-500/)
-	},
-}
-
-export const Small: Story = {
-	args: {
-		children: 'Small Button',
-		size: 'sm',
-		variant: 'solid',
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button', { name: 'Small Button' })
-
-		await expect(button).toHaveClass(/h-8/)
-		await expect(button).toHaveClass(/rounded-md/)
-	},
-}
-
-export const Base: Story = {
-	args: {
-		children: 'Base Button',
-		size: 'base',
-		variant: 'solid',
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button', { name: 'Base Button' })
-
-		await expect(button).toHaveClass(/h-10/)
-	},
-}
-
-export const Large: Story = {
-	args: {
-		children: 'Large Button',
-		size: 'lg',
-		variant: 'solid',
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button', { name: 'Large Button' })
-
-		await expect(button).toHaveClass(/h-12/)
-		await expect(button).toHaveClass(/rounded-md/)
 	},
 }
