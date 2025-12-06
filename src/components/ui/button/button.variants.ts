@@ -9,14 +9,14 @@ export const buttonVariants = cva(
 		},
 		variants: {
 			size: {
-				base: 'h-10 px-4 py-2 has-[>svg]:px-3',
+				base: 'h-10 rounded-md px-4 py-2 has-[>svg]:px-3',
 				lg: 'h-12 rounded-md px-6 has-[>svg]:px-4',
-				sm: 'h-9 rounded-md px-3 has-[>svg]:px-2.5',
+				sm: 'h-9 rounded-sm px-3 has-[>svg]:px-2.5',
 			},
 			variant: {
 				accent: 'bg-accent text-accent-foreground hover:bg-accent/80',
 				destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-				ghost: 'text-foreground hover:bg-foreground/10 hover:text-foreground',
+				ghost: 'bg-transparent text-foreground hover:bg-foreground/10 hover:text-foreground',
 				link: 'text-accent underline-offset-4 hover:underline',
 				outline:
 					'border border-foreground/20 bg-transparent hover:bg-foreground/10 text-foreground',

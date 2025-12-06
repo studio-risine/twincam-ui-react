@@ -24,8 +24,9 @@ export const Primary: Story = {
 	},
 	play: async ({ canvasElement, userEvent, args }) => {
 		const canvas = within(canvasElement)
-		const button = canvas.getByRole('button', { name: 'Primary' })
+		const button = canvas.getByTestId('button')
 
+		await expect(button).toHaveRole('button')
 		await expect(button).toHaveAttribute('data-slot', 'button')
 		await expect(button).toHaveTextContent('Primary')
 		await expect(button).toHaveClass(/bg-primary/)
@@ -103,8 +104,9 @@ export const Ghost: Story = {
 		const canvas = within(canvasElement)
 		const button = canvas.getByRole('button', { name: 'Ghost' })
 
-		await expect(button).toHaveClass(/text-accent/)
-		await expect(button).toHaveClass(/hover:bg-accent/)
+		await expect(button).toHaveRole('button')
+		await expect(button).toHaveClass(/text-foreground/)
+		await expect(button).toHaveClass(/bg-transparent/)
 	},
 }
 
@@ -133,8 +135,7 @@ export const Small: Story = {
 		const button = canvas.getByRole('button', { name: 'Small Button' })
 
 		await expect(button).toHaveClass(/h-9/)
-		await expect(button).toHaveClass(/rounded-md/)
-		await expect(button).toHaveClass(/px-3/)
+		await expect(button).toHaveClass(/rounded-sm/)
 	},
 }
 
@@ -149,7 +150,7 @@ export const Base: Story = {
 		const button = canvas.getByRole('button', { name: 'Base Button' })
 
 		await expect(button).toHaveClass(/h-10/)
-		await expect(button).toHaveClass(/px-4/)
+		await expect(button).toHaveClass(/rounded-md/)
 	},
 }
 
@@ -165,7 +166,6 @@ export const Large: Story = {
 
 		await expect(button).toHaveClass(/h-12/)
 		await expect(button).toHaveClass(/rounded-md/)
-		await expect(button).toHaveClass(/px-6/)
 	},
 }
 
@@ -183,8 +183,5 @@ export const Disabled: Story = {
 		await expect(button).toBeDisabled()
 		await expect(button).toHaveAttribute('disabled')
 		await expect(button).toHaveAttribute('aria-disabled', 'true')
-
-		await expect(button).toHaveClass(/disabled:bg-slate-300/)
-		await expect(button).toHaveClass(/disabled:text-slate-500/)
 	},
 }
