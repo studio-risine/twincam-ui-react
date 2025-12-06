@@ -19,6 +19,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
 			<Tag
 				className={cn(headingVariants({ size }), className)}
 				data-slot="heading"
+				data-testid={`heading-${Tag.toLowerCase()}`}
 				ref={ref}
 				{...props}
 			/>

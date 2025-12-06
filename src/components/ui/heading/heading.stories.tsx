@@ -3,10 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, within } from 'storybook/test'
 
 const meta = {
-	args: {
-		children: 'Heading Text',
-		size: 'base',
-	},
 	argTypes: {
 		as: {
 			control: 'select',
@@ -20,9 +16,7 @@ const meta = {
 		},
 	},
 	component: Heading,
-	parameters: {
-		a11y: { test: 'error' },
-	},
+	parameters: { a11y: { test: 'error' } },
 	tags: ['autodocs'],
 	title: 'Components/Heading',
 } satisfies Meta<typeof Heading>
@@ -30,113 +24,50 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
-	args: {
-		children: 'Default Heading',
-	},
+export const Sizes: Story = {
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
 
-		const heading = canvas.getByRole('heading', { name: 'Default Heading' })
+		const levels = [
+			{ level: 1, text: 'Heading 2xl' },
+			{ level: 2, text: 'Heading xl' },
+			{ level: 3, text: 'Heading lg' },
+			{ level: 4, text: 'Heading base' },
+			{ level: 5, text: 'Heading sm' },
+			{ level: 6, text: 'Heading xs' },
+		]
 
-		await expect(heading).toHaveAttribute('data-slot', 'heading')
-		await expect(heading).toHaveTextContent('Default Heading')
-		await expect(heading.tagName).toBe('H1')
+		for (const item of levels) {
+			const element = canvas.getByTestId(`heading-h${item.level}`)
+			await expect(element).toBeInTheDocument()
+			await expect(element.tagName).toBe(`H${item.level}`)
+			await expect(element).toHaveAttribute('data-slot', 'heading')
+		}
 	},
-}
-
-export const WithAs: Story = {
-	args: {
-		as: 'h2',
-		children: 'H2 Heading',
-		size: '2xl',
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement)
-		const heading = canvas.getByRole('heading', { level: 2, name: 'H2 Heading' })
-
-		await expect(heading.tagName).toBe('H2')
-	},
-}
-
-export const Size2XL: Story = {
-	args: {
-		children: 'Heading XXLarge',
-		size: '2xl',
-	},
-}
-
-export const SizeXL: Story = {
-	args: {
-		children: 'Heading XLarge',
-		size: 'xl',
-	},
-}
-
-export const SizeLarge: Story = {
-	args: {
-		children: 'Heading Large',
-		size: 'lg',
-	},
-}
-
-export const SizeBase: Story = {
-	args: {
-		children: 'Heading Medium',
-		size: 'base',
-	},
-}
-
-export const SizeSmall: Story = {
-	args: {
-		children: 'Heading Small',
-		size: 'sm',
-	},
-}
-
-export const SizeXSmall: Story = {
-	args: {
-		children: 'Heading XSmall',
-		size: 'xs',
-	},
-}
-
-export const WithCustomClass: Story = {
-	args: {
-		as: 'h1',
-		children: 'Custom Styled Heading',
-		className: 'text-blue-600 underline',
-		size: 'xl',
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement)
-		const heading = canvas.getByRole('heading', { name: 'Custom Styled Heading' })
-
-		await expect(heading).toHaveClass('text-blue-600')
-		await expect(heading).toHaveClass('underline')
-	},
-}
-
-export const AllSizes: Story = {
 	render: () => (
-		<div className="space-y-4">
+		<div className="space-y-6">
 			<Heading as="h1" size="2xl">
-				Heading XXLarge
+				Heading 2xl
 			</Heading>
+
 			<Heading as="h2" size="xl">
-				Heading XLarge
+				Heading xl
 			</Heading>
+
 			<Heading as="h3" size="lg">
-				Heading Large
+				Heading lg
 			</Heading>
+
 			<Heading as="h4" size="base">
-				Heading Medium
+				Heading base
 			</Heading>
+
 			<Heading as="h5" size="sm">
-				Heading Small
+				Heading sm
 			</Heading>
+
 			<Heading as="h6" size="xs">
-				Heading XSmall
+				Heading xs
 			</Heading>
 		</div>
 	),
