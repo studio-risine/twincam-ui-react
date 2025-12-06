@@ -12,12 +12,12 @@
 	--card-foreground: var(--color-stone-950);
 	--popover: var(--color-stone-50);
 	--popover-foreground: var(--color-stone-950);
-	--primary: oklch(0.216 0.006 56.043);
+	--primary: var(--color-stone-900)
 	--primary-foreground: var(--color-stone-100);
 	--secondary: var(--color-stone-300);
 	--secondary-foreground: var(--color-stone-900);
-	--muted: var(--color-stone-300);
-	--muted-foreground: oklch(0.553 0.013 58.071);
+	--muted: var(--color-stone-500);
+	--muted-foreground: var(--color-stone-700);
 	--accent: rgb(255, 125, 94);
 	--accent-foreground: var(--color-stone-900);
 	--destructive: var(--color-red-500);
@@ -51,8 +51,8 @@
 	--primary-foreground: var(--color-stone-900);
 	--secondary: var(--color-stone-800);
 	--secondary-foreground: var(--color-orange-100);
-	--muted: oklch(0.268 0.007 34.298);
-	--muted-foreground: oklch(0.709 0.01 56.259);
+	--muted: var(--color-stone-400);
+	--muted-foreground: var(--color-stone-600);
 	--accent: rgb(255, 125, 94);
 	--accent-foreground: var(--color-stone-950);
 	--destructive: var(--color-red-500);

@@ -82,7 +82,6 @@ export const Colors: Story = {
 	render: () => (
 		<div className="space-y-4">
 			<Text color="primary">Primary color</Text>
-			<Text color="secondary">Secondary color</Text>
 			<Text color="muted">Muted color</Text>
 			<Text color="destructive">Destructive color</Text>
 		</div>
