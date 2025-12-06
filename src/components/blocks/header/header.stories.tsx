@@ -33,7 +33,7 @@ export const Default: Story = {
 			</HeaderLeft>
 			<HeaderCenter>
 				<nav className="flex gap-6">
-					<a className="font-semibold text-base text-primary hover:text-primary/80" href="/">
+					<a className="font-semibold text-accent text-base hover:text-accent/80" href="/">
 						Home
 					</a>
 					<a
@@ -48,7 +48,7 @@ export const Default: Story = {
 				</nav>
 			</HeaderCenter>
 			<HeaderRight>
-				<Button isIcon variant="ghost">
+				<Button aria-label="Mode theme action" isIcon variant="ghost">
 					<Sun className="h-4 w-4" />
 				</Button>
 				<Button>Download</Button>
@@ -66,7 +66,7 @@ export const WithAuthButtons: Story = {
 			</HeaderLeft>
 			<HeaderCenter>
 				<nav className="flex gap-6">
-					<a className="font-semibold text-base text-primary hover:text-primary/80" href="/">
+					<a className="font-semibold text-accent text-base hover:text-accent/80" href="/">
 						Home
 					</a>
 					<a
@@ -74,6 +74,9 @@ export const WithAuthButtons: Story = {
 						href="/features"
 					>
 						Features
+					</a>
+					<a className="font-semibold text-base text-primary hover:text-primary/80" href="/pricing">
+						Pricing
 					</a>
 				</nav>
 			</HeaderCenter>

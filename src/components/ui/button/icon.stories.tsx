@@ -26,9 +26,8 @@ export const Default: Story = {
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const button = canvas.getByTestId('button')
+		const button = canvas.getByRole('button')
 
-		await expect(button).toHaveRole('button')
 		await expect(button).toHaveAttribute('aria-label', 'Add item')
 		await expect(button).toHaveClass(/size-10/)
 		await expect(button).toHaveClass(/p-0/)
@@ -44,7 +43,7 @@ export const Small: Story = {
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const button = canvas.getByTestId('button')
+		const button = canvas.getByRole('button')
 
 		await expect(button).toHaveRole('button')
 		await expect(button).toHaveClass(/size-8/)

@@ -18,7 +18,6 @@ export const Button = forwardRef<ComponentRef<'button'>, ButtonProps>(
 			<Component
 				className={cn(buttonVariants({ className, isIcon, size, variant }))}
 				data-slot="button"
-				data-testid="button"
 				ref={ref}
 				{...props}
 			/>
