@@ -52,6 +52,40 @@ The button component supports multiple visual variants:
 <Button size="lg">Large</Button>
 ```
 
+## Icon Buttons
+
+The button component supports an `isIcon` variant for rendering icon-only buttons with equal width and height:
+
+```tsx
+import { Button } from '@tc96/ui-react'
+import { Plus, Heart, Star } from 'lucide-react'
+
+export function Example() {
+  return (
+    <>
+      <Button isIcon size="sm" variant="accent" aria-label="Add item">
+        <Plus />
+      </Button>
+      <Button isIcon size="base" variant="primary" aria-label="Like">
+        <Heart />
+      </Button>
+      <Button isIcon size="lg" variant="outline" aria-label="Favorite">
+        <Star />
+      </Button>
+    </>
+  )
+}
+```
+
+When `isIcon={true}`:
+- **`sm`** - 32x32px (size-8)
+- **`base`** - 40x40px (size-10)
+- **`lg`** - 48x48px (size-12)
+- Padding is removed and gap is set to 0
+- Remember to add `aria-label` for accessibility
+
+> **Note:** The `IconButton` component is now deprecated. Use `<Button isIcon />` instead.
+
 ## Disabled State
 
 When the `disabled` prop is set to `true`, the button displays specific styling and prevents interaction:
@@ -89,8 +123,9 @@ export function Example() {
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `'solid' \| 'outline' \| 'ghost' \| 'link' \| 'destructive'` | `'solid'` | Visual style variant |
-| `size` | `'sm' \| 'base' \| 'lg' \| 'base'` | Button size |
+| `variant` | `'primary' \| 'secondary' \| 'accent' \| 'outline' \| 'ghost' \| 'link' \| 'destructive'` | `'primary'` | Visual style variant |
+| `size` | `'sm' \| 'base' \| 'lg'` | `'base'` | Button size |
+| `isIcon` | `boolean` | `false` | Render as icon button with equal width/height |
 | `asChild` | `boolean` | `false` | Render as child element (uses Radix Slot) |
 | `disabled` | `boolean` | `false` | Disable the button |
 | `className` | `string` | - | Additional CSS classes |

@@ -1,141 +1,256 @@
-# Text
+# Text Component
 
-A flexible text component for body copy and inline text, supporting paragraph and span elements with size variants.
+A polymorphic text component that can render as different HTML elements while maintaining type safety and consistent styling.
+
+## Features
+
+- **Polymorphic**: Render as `p`, `span`, `div`, `a`, `button`, or `label`
+- **Type-Safe**: Full TypeScript support with element-specific props
+- **Variants**: Built-in size and color variants via CVA
+- **Accessible**: Semantic HTML with proper element selection
+- **Ref Support**: Forward refs with correct typing
 
 ## Installation
 
 ```bash
-pnpm add @tc96/ui-react
+# This component is part of the UI library
+# No separate installation needed
 ```
 
-## Usage
+## Basic Usage
 
 ```tsx
-import { Text } from '@tc96/ui-react'
+import { Text } from '@/components/ui/text'
 
-export function Example() {
-  return <Text>This is body text</Text>
-}
+// Default paragraph
+<Text>This is a paragraph</Text>
+
+// As span
+<Text as="span">Inline text</Text>
+
+// As link with native props
+<Text as="a" href="/home">Navigate</Text>
+
+// As button with event handlers
+<Text as="button" onClick={handleClick}>Click me</Text>
 ```
 
-## Props
+## API Reference
 
-### `as`
+### Props
 
-Controls which HTML text element is rendered. Defaults to `p`.
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `as` | `'p' \| 'span' \| 'div' \| 'a' \| 'button' \| 'label'` | `'p'` | The HTML element to render |
+| `size` | `'sm' \| 'base' \| 'lg' \| 'xl'` | `'base'` | Text size variant |
+| `color` | `'primary' \| 'secondary' \| 'muted' \| 'destructive'` | - | Text color variant |
+| `className` | `string` | - | Additional CSS classes |
+| `children` | `ReactNode` | - | Content to display |
+| `ref` | `React.Ref<HTMLElement>` | - | Forward ref to the element |
+| `...props` | `ComponentProps<T>` | - | Native props based on `as` value |
 
-- **`p`** (default) - Paragraph element for block-level text
-- **`span`** - Inline text element
+### Size Variants
 
-### Examples
+- `sm`: 14px (0.875rem)
+- `base`: 16px (1rem) - default
+- `lg`: 18px (1.125rem)
+- `xl`: 20px (1.25rem)
 
-```tsx
-<Text as="p">This is a paragraph</Text>
-<Text as="span">This is inline text</Text>
-```
+### Color Variants
 
-## Sizes
+- `primary`: Primary brand color
+- `muted`: Muted/subdued text
 
-The `size` prop controls the text size:
+## Examples
 
-- **`sm`** - Small text (text-sm, 14px)
-- **`base`** Base text (text-base, 16px)
-- **`lg`** - Large text (text-lg, 18px)
-- **`xl`** - Extra large text (text-xl, 20px)
-
-### Examples
+### Size Variants
 
 ```tsx
 <Text size="sm">Small text</Text>
-<Text size="base">Base text</Text>
+<Text size="base">Normal text</Text>
 <Text size="lg">Large text</Text>
 <Text size="xl">Extra large text</Text>
 ```
 
-## Custom Styling
-
-The `className` prop can be used to add custom styles:
+### Color Variants
 
 ```tsx
-<Text className="text-blue-600 font-bold">
-  Custom styled text
+<Text color="primary">Primary text</Text>
+<Text color="secondary">Secondary text</Text>
+<Text color="muted">Muted text</Text>
+<Text color="destructive">Error message</Text>
+```
+
+### As Link
+
+```tsx
+// HTML anchor
+<Text as="a" href="https://example.com" target="_blank" rel="noopener">
+  External link
+</Text>
+
+// Next.js Link
+import Link from 'next/link'
+<Text as={Link} href="/dashboard">
+  Dashboard
 </Text>
 ```
+
+### As Button
+
+```tsx
+<Text as="button" onClick={() => alert('Clicked!')}>
+  Click me
+</Text>
+
+<Text as="button" disabled>
+  Disabled button
+</Text>
+```
+
+### As Label
+
+```tsx
+<Text as="label" htmlFor="email" size="sm">
+  Email address
+</Text>
+<input id="email" type="email" />
+```
+
+### With Ref
+
+```tsx
+import { useRef } from 'react'
+
+function MyComponent() {
+  const textRef = useRef<HTMLParagraphElement>(null)
+
+  const focusText = () => {
+    textRef.current?.focus()
+  }
+
+  return (
+    <>
+      <Text ref={textRef} tabIndex={0}>
+        Focusable text
+      </Text>
+      <button onClick={focusText}>Focus text</button>
+    </>
+  )
+}
+```
+
+### Inline Composition
+
+```tsx
+<Text>
+  This is a paragraph with{' '}
+  <Text as="span" color="primary" className="font-bold">
+    highlighted text
+  </Text>{' '}
+  in the middle.
+</Text>
+```
+
+## Type Safety
+
+The component provides full type safety for element-specific props:
+
+```tsx
+// ✅ Valid: 'a' accepts href
+<Text as="a" href="/home">Link</Text>
+
+// ✅ Valid: 'button' accepts onClick
+<Text as="button" onClick={handleClick}>Button</Text>
+
+// ❌ Error: 'p' doesn't have href
+<Text as="p" href="/home">Error</Text>
+
+// ❌ Error: 'h1' is not in allowed elements
+<Text as="h1">Error</Text>
+```
+
+## Implementation Details
+
+### Polymorphic Approach
+
+The component uses a polymorphic pattern with `forwardRef`:
+
+```typescript
+type AllowedTextElements = 'p' | 'span' | 'div' | 'a' | 'button' | 'label'
+
+type TextComponent = <T extends AllowedTextElements = 'p'>(
+  props: TextComponentProps<T> & { ref?: React.Ref<HTMLElement> },
+) => React.ReactElement | null
+
+const TextPolymorphic = forwardRef<HTMLElement, TextComponentProps<AllowedTextElements>>(
+  ({ as, children, size, color, className, ...props }, ref) => {
+    const Component = (as || 'p') as ElementType
+    return (
+      <Component
+        className={cn(textVariants({ size, color }), className)}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </Component>
+    )
+  }
+)
+
+export const Text = TextPolymorphic as TextComponent
+```
+
+### Why This Approach?
+
+1. **Type Inference**: The generic `TextComponent` type preserves type inference based on the `as` prop
+2. **Ref Support**: Using `forwardRef` allows ref forwarding with correct typing
+3. **Type Assertion**: The final cast connects the concrete implementation with the generic type
+4. **Restricted Elements**: Limiting to specific elements prevents misuse while maintaining flexibility
+
+### Avoiding Conflicts
+
+The component uses `Omit<ComponentPropsWithoutRef<T>, keyof TextProps>` to prevent conflicts between:
+- Native HTML props (e.g., `<input size>`)
+- CVA variant props (e.g., our `size` variant)
+
+This ensures variant props always take precedence.
+
+## Use Cases
+
+### When to Use
+
+- ✅ Text content that needs semantic flexibility
+- ✅ Consistent typography across the application
+- ✅ Links that should look like text
+- ✅ Buttons styled as text
+- ✅ Form labels with consistent styling
+
+### When NOT to Use
+
+- ❌ Complex interactive components (use dedicated components)
+- ❌ Headings (consider a dedicated `Heading` component)
+- ❌ Rich text with complex formatting (use a rich text editor)
 
 ## Accessibility
 
-### Semantic HTML
+- Uses semantic HTML elements based on the `as` prop
+- Supports all native ARIA attributes
+- Maintains proper focus management with `ref`
+- Respects color contrast requirements (use appropriate color variants)
 
-- Use `<Text as="p">` for paragraphs of text content
-- Use `<Text as="span">` for inline text that needs styling within a paragraph
-- For links, use a dedicated Link component (not Text)
-- For headings, use the Heading component
+## Related Components
 
-### Text Hierarchy
+- `Heading`: For semantic heading elements (h1-h6)
+- `Link`: For navigation links with routing
+- `Button`: For interactive buttons with variants
 
-```tsx
-{/* Use Heading for titles */}
-<Heading as="h2" size="xl">Section Title</Heading>
+## Contributing
 
-{/* Use Text for body content */}
-<Text>
-  This is the body text that follows the heading. It provides
-  detailed information about the section topic.
-</Text>
+When adding new variants or features:
 
-{/* Use span for inline emphasis */}
-<Text>
-  This paragraph has <Text as="span" className="font-bold">bold text</Text> inline.
-</Text>
-```
-
-### Color and Contrast
-
-- Default color uses `text-foreground` from the theme
-- Ensure sufficient contrast when overriding colors (WCAG AA minimum 4.5:1 for normal text)
-- Test color combinations with accessibility tools
-
-### Font Size Considerations
-
-- `sm` (14px) - Use sparingly; ensure readability
-- `base` (16px) - Recommended minimum for body text
-- `lg` and `xl` - For emphasis or larger displays
-
-## API Reference
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `as` | `'p' \| 'span'` | `'p'` | The HTML text element to render |
-| `size` | `'sm' \| 'base' \| 'lg' \| 'xl'` | `'base'` | The text size |
-| `className` | `string` | `undefined` | Additional CSS classes to apply |
-
-The component also accepts all standard HTML paragraph attributes.
-
-## Examples
-
-### Basic Paragraph
-
-```tsx
-<Text>
-  This is a paragraph of text with the default base size.
-</Text>
-```
-
-### Inline Text with Custom Style
-
-```tsx
-<p>
-  This is a sentence with <Text as="span" className="text-accent font-medium">highlighted text</Text> inline.
-</p>
-```
-
-### Different Sizes
-
-```tsx
-<div className="space-y-2">
-  <Text size="sm">Small supporting text</Text>
-  <Text size="base">Standard body text</Text>
-  <Text size="lg">Emphasized text</Text>
-  <Text size="xl">Large prominent text</Text>
-</div>
-```
+1. Update `text.variants.ts` with new CVA variants
+2. Update TypeScript types in `index.tsx`
+3. Add examples to `examples.tsx`
+4. Add Storybook stories to `text.stories.tsx`
+5. Update this README with new API documentation

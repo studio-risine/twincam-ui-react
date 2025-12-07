@@ -1,24 +1,49 @@
 import { cva } from 'class-variance-authority'
 
 export const buttonVariants = cva(
-	'inline-flex items-center justify-center gap-2 transition-colors ease-linear duration-75 whitespace-nowrap rounded-sm text-sm font-semibold disabled:pointer-events-none disabled:bg-slate-300 disabled:border-slate-300 disabled:text-slate-500 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 ring-ring/10 dark:ring-ring/20 dark:outline-ring/40 outline-ring/50 focus-visible:ring-4 focus-visible:outline-1 aria-invalid:focus-visible:ring-0',
+	'inline-flex items-center justify-center gap-2 transition-colors ease-linear duration-75 whitespace-nowrap rounded-sm text-sm font-semibold disabled:pointer-events-none disabled:bg-primary/30 disabled:border-primary/30 disabled:text-primary/50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 ring-ring/10 dark:ring-ring/20 dark:outline-ring/40 outline-ring/50 focus-visible:ring-4 focus-visible:outline-1 aria-invalid:focus-visible:ring-0',
 	{
+		compoundVariants: [
+			{
+				class: 'size-8 p-0 gap-0',
+				isIcon: true,
+				size: 'sm',
+			},
+			{
+				class: 'size-10 p-0 gap-0',
+				isIcon: true,
+				size: 'base',
+			},
+			{
+				class: 'size-12 [&_svg:not([class*="size-"])]:size-6 p-0 gap-0',
+				isIcon: true,
+				size: 'lg',
+			},
+		],
 		defaultVariants: {
+			isIcon: false,
 			size: 'base',
-			variant: 'solid',
+			variant: 'primary',
 		},
 		variants: {
+			isIcon: {
+				false: '',
+				true: '',
+			},
 			size: {
-				base: 'h-10 px-4 py-2 has-[>svg]:px-3',
+				base: 'h-10 rounded-md px-4 py-2 has-[>svg]:px-3',
 				lg: 'h-12 rounded-md px-6 has-[>svg]:px-4',
-				sm: 'h-8 rounded-md px-3 has-[>svg]:px-2.5',
+				sm: 'h-9 rounded-sm px-3 has-[>svg]:px-2.5',
 			},
 			variant: {
+				accent: 'bg-accent text-accent-foreground hover:bg-accent/80',
 				destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-				ghost: 'text-accent hover:bg-accent/10 hover:text-accent',
-				link: 'text-accent underline-offset-4 hover:underline',
-				outline: 'border border-accent/20 bg-transparent hover:bg-accent/10 text-accent',
-				solid: 'bg-accent text-accent-foreground hover:bg-accent/80',
+				ghost: 'bg-transparent text-foreground hover:bg-foreground/10 hover:text-foreground',
+				link: 'text-primary underline-offset-4 hover:underline',
+				outline:
+					'border border-foreground/20 bg-transparent hover:bg-foreground/10 text-foreground',
+				primary: 'bg-primary text-primary-foreground hover:bg-primary/80',
+				secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
 			},
 		},
 	},

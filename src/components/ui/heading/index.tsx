@@ -1,6 +1,6 @@
 import { cn } from '@/libs/utils'
 import type { VariantProps } from 'class-variance-authority'
-import type { ComponentPropsWithoutRef, ElementType } from 'react'
+import type { ComponentPropsWithoutRef } from 'react'
 import { forwardRef } from 'react'
 import { headingVariants } from './heading.variants'
 
@@ -13,12 +13,13 @@ export type HeadingProps = ComponentPropsWithoutRef<'h1'> &
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
 	({ className, size, as, ...props }, ref) => {
-		const Tag: ElementType = as || 'h1'
+		const Tag = as || 'h1'
 
 		return (
 			<Tag
 				className={cn(headingVariants({ size }), className)}
 				data-slot="heading"
+				data-testid={`heading-${Tag.toLowerCase()}`}
 				ref={ref}
 				{...props}
 			/>

@@ -2,20 +2,21 @@ import type { StorybookConfig } from '@storybook/react-vite'
 
 const config: StorybookConfig = {
 	stories: [
-		'../src/stories/*.stories.@(js|jsx|mjs|ts|tsx)',
+		'../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
 	],
 	addons: [
-        '@storybook/addon-themes',
-        '@storybook/addon-docs',
-        '@storybook/addon-vitest',
-        '@storybook/addon-a11y'
-    ],
+		'@storybook/addon-themes',
+		'@storybook/addon-docs',
+		'@storybook/addon-vitest',
+		'@storybook/addon-a11y'
+	],
 	framework: {
 		name: '@storybook/react-vite',
 		options: {},
 	},
 	docs: {
 		defaultName: 'Documentation',
+		docsMode: false,
 	},
 }
 export default config
