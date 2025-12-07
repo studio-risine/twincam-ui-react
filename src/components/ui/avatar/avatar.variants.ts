@@ -16,5 +16,5 @@ export const avatarVariants = cva('relative flex shrink-0 overflow-hidden rounde
 export const avatarImageVariants = cva('aspect-square h-full w-full')
 
 export const avatarFallbackVariants = cva(
-	'flex h-full w-full items-center justify-center rounded-full bg-muted',
+	'flex h-full w-full items-center justify-center rounded-full bg-muted text-muted-foreground',
 )

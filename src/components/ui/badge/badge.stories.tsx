@@ -66,16 +66,19 @@ export const States: Story = {
 		await expect(badges.length).toBeGreaterThanOrEqual(3)
 
 		const successBadge = canvas.getByTestId('badge-success')
-		await expect(successBadge).toHaveClass(/bg-lime-50/)
+		await expect(successBadge).toHaveClass(/bg-lime-100/)
+		await expect(successBadge).toHaveClass(/border-lime-200/)
 		await expect(successBadge).toHaveClass(/text-lime-700/)
 
 		const warningBadge = canvas.getByTestId('badge-warning')
-		await expect(warningBadge).toHaveClass(/bg-amber-50/)
+		await expect(warningBadge).toHaveClass(/bg-amber-100/)
+		await expect(warningBadge).toHaveClass(/border-amber-200/)
 		await expect(warningBadge).toHaveClass(/text-amber-700/)
 
 		const errorBadge = canvas.getByTestId('badge-error')
-		await expect(errorBadge).toHaveClass(/bg-destructive/)
-		await expect(errorBadge).toHaveClass(/text-destructive-foreground/)
+		await expect(errorBadge).toHaveClass(/bg-red-100/)
+		await expect(errorBadge).toHaveClass(/border-red-200/)
+		await expect(errorBadge).toHaveClass(/text-red-700/)
 	},
 	render: () => (
 		<div className="flex items-center gap-3">
@@ -100,7 +103,6 @@ export const WithIcon: Story = {
 		await expect(badge).toHaveClass(/bg-background/)
 		await expect(badge).toHaveClass(/border/)
 
-		// Check for icon presence
 		const icon = badge.querySelector('svg')
 		await expect(icon).toBeInTheDocument()
 	},

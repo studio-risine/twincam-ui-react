@@ -16,8 +16,8 @@
 	--primary-foreground: var(--color-stone-100);
 	--secondary: var(--color-stone-300);
 	--secondary-foreground: var(--color-stone-900);
-	--muted: var(--color-stone-500);
-	--muted-foreground: var(--color-stone-700);
+	--muted: var(--color-stone-600);
+	--muted-foreground: var(--color-stone-200);
 	--accent: rgb(255, 125, 94);
 	--accent-foreground: var(--color-stone-900);
 	--destructive: var(--color-red-800);
@@ -51,8 +51,8 @@
 	--primary-foreground: var(--color-stone-900);
 	--secondary: var(--color-stone-800);
 	--secondary-foreground: var(--color-orange-100);
-	--muted: var(--color-stone-400);
-	--muted-foreground: var(--color-stone-600);
+	--muted: var(--color-stone-300);
+	--muted-foreground: var(--color-stone-700);
 	--accent: rgb(255, 125, 94);
 	--accent-foreground: var(--color-stone-950);
 	--destructive: var(--color-red-800);
