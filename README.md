@@ -62,6 +62,40 @@ export default function Example() {
 }
 ```
 
+## Tailwind Configuration
+
+To use the full design system with your own Tailwind configuration, import the preset:
+
+```ts
+// tailwind.config.ts
+import type { Config } from "tailwindcss";
+import twincamPreset from "@tc96/ui-react/tailwind-preset";
+
+export default {
+  presets: [twincamPreset],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@tc96/ui-react/dist/**/*.{js,mjs}",
+  ],
+  // Optional: extend the preset with your own customizations
+  theme: {
+    extend: {
+      // Add your custom styles here
+    },
+  },
+} satisfies Config;
+```
+
+The preset includes:
+- Design tokens (colors, spacing, typography)
+- Custom theme with dark mode support
+- Border radius system
+- Animations for components
+- Inter font family
+
+See [TAILWIND_PRESET.md](./TAILWIND_PRESET.md) for detailed usage instructions.
+
+
 ## Local Development (Contributors)
 Prerequisites: Node 18+ (recommended 22), pnpm.
 
