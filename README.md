@@ -1,7 +1,7 @@
 
 <div align="center">
 
-# @tc⚡96/ui-react
+# @tc96/ui-react
 
 [![npm version](https://img.shields.io/npm/v/@tc96/ui-react?style=flat&colorA=18181B&colorB=0EA5E9)](https://www.npmjs.com/package/@tc96/ui-react)
 [![npm downloads](https://img.shields.io/npm/dm/@tc96/ui-react?style=flat&colorA=18181B&colorB=0EA5E9)](https://www.npmjs.com/package/@tc96/ui-react)
