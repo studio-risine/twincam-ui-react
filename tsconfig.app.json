@@ -1,6 +1,5 @@
 {
 	"compilerOptions": {
-		"ignoreDeprecations": "6.0",
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"]
@@ -22,6 +21,5 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedSideEffectImports": true
-	},
-	"include": ["src"]
+	}
 }

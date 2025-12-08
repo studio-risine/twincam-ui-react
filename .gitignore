@@ -13,6 +13,9 @@ dist-ssr
 *.local
 package-lock.json
 
+# Storybook
+src/stories/**
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
