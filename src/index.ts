@@ -1,4 +1,4 @@
-import './styles/index.css'
+import '@/styles/index.css'
 
 export * from '@/components/blocks/header'
 export * from '@/components/ui/avatar'
