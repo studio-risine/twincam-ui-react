@@ -31,7 +31,7 @@ export default defineConfig({
 		emptyOutDir: false
 	},
   plugins: [react(), tailwindcss(), dts({
-    entryRoot: resolve(dirname, 'src'),
+    entryRoot: 'src',
     outDir: resolve(dirname, 'dist'),
     insertTypesEntry: true,
     tsconfigPath: resolve(dirname, 'tsconfig.build.json'),
