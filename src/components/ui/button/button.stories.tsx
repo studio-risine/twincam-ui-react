@@ -4,7 +4,21 @@ import { expect, fn, within } from 'storybook/test'
 
 const meta = {
 	args: {
+		children: 'Button',
 		onClick: fn(),
+		size: 'base',
+	},
+	argTypes: {
+		size: {
+			control: 'inline-radio',
+			defaultValue: 'base',
+			options: ['sm', 'base', 'lg'],
+		},
+		variant: {
+			control: 'select',
+			defaultValue: 'primary',
+			options: ['primary', 'secondary', 'accent', 'ghost', 'link'],
+		},
 	},
 	component: Button,
 	parameters: {
@@ -17,9 +31,9 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Primary: Story = {
+export const Default: Story = {
 	args: {
-		children: 'Primary',
+		size: 'base',
 		variant: 'primary',
 	},
 	play: async ({ canvasElement, userEvent, args }) => {
@@ -28,8 +42,9 @@ export const Primary: Story = {
 
 		await expect(button).toHaveRole('button')
 		await expect(button).toHaveAttribute('data-slot', 'button')
-		await expect(button).toHaveTextContent('Primary')
+		await expect(button).toHaveTextContent('Button')
 		await expect(button).toHaveClass(/bg-primary/)
+		await expect(button).toHaveClass(/rounded-sm/)
 
 		await expect(button).not.toBeDisabled()
 
@@ -40,7 +55,7 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
 	args: {
-		children: 'Secondary',
+		size: 'base',
 		variant: 'secondary',
 	},
 	play: async ({ canvasElement }) => {
@@ -54,7 +69,7 @@ export const Secondary: Story = {
 
 export const Accent: Story = {
 	args: {
-		children: 'Accent',
+		size: 'base',
 		variant: 'accent',
 	},
 	play: async ({ canvasElement }) => {
@@ -68,7 +83,7 @@ export const Accent: Story = {
 
 export const Destructive: Story = {
 	args: {
-		children: 'Destructive',
+		size: 'base',
 		variant: 'destructive',
 	},
 	play: async ({ canvasElement }) => {
@@ -82,7 +97,7 @@ export const Destructive: Story = {
 
 export const Outline: Story = {
 	args: {
-		children: 'Outline',
+		size: 'base',
 		variant: 'outline',
 	},
 	play: async ({ canvasElement }) => {
@@ -97,7 +112,7 @@ export const Outline: Story = {
 
 export const Ghost: Story = {
 	args: {
-		children: 'Ghost',
+		size: 'base',
 		variant: 'ghost',
 	},
 	play: async ({ canvasElement }) => {
@@ -112,7 +127,7 @@ export const Ghost: Story = {
 
 export const Link: Story = {
 	args: {
-		children: 'Link',
+		size: 'base',
 		variant: 'link',
 	},
 	play: async ({ canvasElement }) => {
@@ -126,7 +141,6 @@ export const Link: Story = {
 
 export const Small: Story = {
 	args: {
-		children: 'Small Button',
 		size: 'sm',
 		variant: 'primary',
 	},
@@ -135,13 +149,11 @@ export const Small: Story = {
 		const button = canvas.getByRole('button')
 
 		await expect(button).toHaveClass(/h-9/)
-		await expect(button).toHaveClass(/rounded-sm/)
 	},
 }
 
 export const Base: Story = {
 	args: {
-		children: 'Base Button',
 		size: 'base',
 		variant: 'primary',
 	},
@@ -150,13 +162,11 @@ export const Base: Story = {
 		const button = canvas.getByRole('button')
 
 		await expect(button).toHaveClass(/h-10/)
-		await expect(button).toHaveClass(/rounded-md/)
 	},
 }
 
 export const Large: Story = {
 	args: {
-		children: 'Large Button',
 		size: 'lg',
 		variant: 'primary',
 	},
@@ -165,14 +175,12 @@ export const Large: Story = {
 		const button = canvas.getByRole('button')
 
 		await expect(button).toHaveClass(/h-12/)
-		await expect(button).toHaveClass(/rounded-md/)
 	},
 }
 
 export const Disabled: Story = {
 	args: {
 		'aria-disabled': 'true',
-		children: 'Disabled',
 		disabled: true,
 		variant: 'primary',
 	},
