@@ -32,6 +32,7 @@ export const Default: Story = {
 		await expect(button).toHaveClass(/size-10/)
 		await expect(button).toHaveClass(/p-0/)
 		await expect(button).toHaveClass(/gap-0/)
+		await expect(button).toHaveClass(/rounded-sm/)
 	},
 }
 
