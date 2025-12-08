@@ -1,17 +1,52 @@
 /// <reference types="vitest/config" />
-import path from 'node:path';
-import tailwindcss from '@tailwindcss/vite';
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
-import { fileURLToPath } from 'node:url';
-import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-import { playwright } from '@vitest/browser-playwright';
-const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+import path, { resolve } from 'node:path'
+import dts from 'vite-plugin-dts'
+import tailwindcss from '@tailwindcss/vite'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+import { fileURLToPath } from 'node:url'
+import { storybookTest } from '@storybook/addon-vitest/vitest-plugin'
+import { playwright } from '@vitest/browser-playwright'
+const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
+
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+	build: {
+		lib: {
+			entry: resolve(dirname, 'src/index.ts'),
+			fileName: 'index',
+			formats: ['es', 'cjs'],
+		},
+		rollupOptions: {
+			external: [
+				'react',
+				'react-dom',
+				'react/jsx-runtime',
+				'class-variance-authority',
+				'clsx',
+				'tailwind-merge',
+				'lucide-react',
+				/^@radix-ui\/.*/
+			],
+		},
+		emptyOutDir: false
+	},
+  plugins: [react(), tailwindcss(), dts({
+    entryRoot: 'src',
+    outDir: resolve(dirname, 'dist'),
+    insertTypesEntry: true,
+    tsconfigPath: resolve(dirname, 'tsconfig.build.json'),
+    exclude: [
+      '**/*.stories.{ts,tsx}',
+      '**/*.test.{ts,tsx}',
+      '**/*.mock.{ts,tsx}',
+      '**/storybook-static/**',
+      '**/libs/**',
+      '**/shared/**'
+    ]
+  })],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
+      '@': resolve(dirname, './src')
     }
   },
   test: {

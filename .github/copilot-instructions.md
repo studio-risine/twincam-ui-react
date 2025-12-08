@@ -119,9 +119,8 @@ This allows `@theme`, `@plugin`, `@apply` in CSS files without errors.
 
 - **Dual format**: CJS (`dist/index.js`) + ESM (`dist/index.mjs`)
 - **Types**: `dist/index.d.ts`
-- **Styles**: `dist/styles/index.css` (exported as subpath)
+- **Styles**: `dist/index.css` (exported as subpath)
 - **Tree-shakeable**: `sideEffects: false`
-- tsup excludes `*.stories.*` files automatically
 
 ## TypeScript Configuration
 

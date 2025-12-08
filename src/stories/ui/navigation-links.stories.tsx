@@ -1,7 +1,53 @@
+import { type NavigationData, NavigationLinks } from '@/components/ui/navigation-links'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, within } from 'storybook/test'
-import { data } from './data'
-import { NavigationLinks } from './navigation-links'
+
+const data: NavigationData = {
+	groups: [
+		{
+			items: [
+				{
+					description: 'Learn how to get started with our platform',
+					href: '/getting-started',
+					title: 'Getting Started',
+				},
+				{
+					description: 'Browse our component library and examples',
+					href: '/components',
+					title: 'Components',
+				},
+			],
+			title: 'Documentation',
+		},
+		{
+			items: [
+				{
+					description: 'View detailed API documentation',
+					href: '/api',
+					title: 'API Reference',
+				},
+				{
+					description: 'Learn about best practices',
+					href: '/guides',
+					title: 'Guides',
+				},
+			],
+			title: 'Resources',
+		},
+	],
+	items: [
+		{
+			description: 'Go to homepage',
+			href: '/',
+			title: 'Home',
+		},
+		{
+			description: 'Learn about us',
+			href: '/about',
+			title: 'About',
+		},
+	],
+}
 
 const meta = {
 	args: {

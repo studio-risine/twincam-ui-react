@@ -52,7 +52,7 @@ Import the styles once (recommended in your app entry):
 
 ```ts
 // app entry (e.g., src/main.tsx)
-import '@tc96/ui-react/dist/styles/index.css'
+import '@tc96/ui-react/styles.css'
 ```
 
 Use components in your app:
@@ -96,7 +96,7 @@ The preset includes:
 - Animations for components
 - Inter font family
 
-See [TAILWIND_PRESET.md](./TAILWIND_PRESET.md) for detailed usage instructions.
+See [TAILWIND_PRESET.md](./docs/TAILWIND_PRESET.md) for detailed usage instructions.
 
 
 ## Local Development (Contributors)
