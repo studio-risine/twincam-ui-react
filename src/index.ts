@@ -1,6 +1,7 @@
 import '@/styles/index.css'
 
 export * from '@/components/blocks/header'
+export * from '@/components/layout/main-content'
 export * from '@/components/ui/avatar'
 export * from '@/components/ui/badge'
 export * from '@/components/ui/button'

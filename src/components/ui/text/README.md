@@ -43,7 +43,7 @@ import { Text } from '@/components/ui/text'
 |------|------|---------|-------------|
 | `as` | `'p' \| 'span' \| 'div' \| 'a' \| 'button' \| 'label'` | `'p'` | The HTML element to render |
 | `size` | `'sm' \| 'base' \| 'lg' \| 'xl'` | `'base'` | Text size variant |
-| `color` | `'primary' \| 'secondary' \| 'muted' \| 'destructive'` | - | Text color variant |
+| `variant` | `'muted' \| 'primary'` | - | Text color variant |
 | `className` | `string` | - | Additional CSS classes |
 | `children` | `ReactNode` | - | Content to display |
 | `ref` | `React.Ref<HTMLElement>` | - | Forward ref to the element |

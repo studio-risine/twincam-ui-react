@@ -46,27 +46,27 @@ export const Sizes: Story = {
 	},
 	render: () => (
 		<div className="space-y-6">
-			<Heading as="h1" size="2xl">
+			<Heading as="h1" data-testid="heading-h1" size="2xl">
 				Heading 2xl
 			</Heading>
 
-			<Heading as="h2" size="xl">
+			<Heading as="h2" data-testid="heading-h2" size="xl">
 				Heading xl
 			</Heading>
 
-			<Heading as="h3" size="lg">
+			<Heading as="h3" data-testid="heading-h3" size="lg">
 				Heading lg
 			</Heading>
 
-			<Heading as="h4" size="base">
+			<Heading as="h4" data-testid="heading-h4" size="base">
 				Heading base
 			</Heading>
 
-			<Heading as="h5" size="sm">
+			<Heading as="h5" data-testid="heading-h5" size="sm">
 				Heading sm
 			</Heading>
 
-			<Heading as="h6" size="xs">
+			<Heading as="h6" data-testid="heading-h6" size="xs">
 				Heading xs
 			</Heading>
 		</div>

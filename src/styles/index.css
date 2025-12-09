@@ -9,7 +9,7 @@
 :root {
 	--radius: 0.625rem;
 	--background: var(--color-orange-50);
-	--foreground: var(--color-stone-950);
+	--foreground: var(--color-stone-900);
 	--card: var(--color-stone-50);
 	--card-foreground: var(--color-stone-950);
 	--popover: var(--color-stone-50);
@@ -18,7 +18,7 @@
 	--primary-foreground: var(--color-stone-100);
 	--secondary: var(--color-stone-300);
 	--secondary-foreground: var(--color-stone-900);
-	--muted: var(--color-stone-600);
+	--muted: var(--color-stone-500);
 	--muted-foreground: var(--color-stone-200);
 	--accent: rgb(255, 125, 94);
 	--accent-foreground: var(--color-stone-900);
@@ -44,16 +44,16 @@
 
 .dark {
 	--background: var(--color-stone-950);
-	--foreground: var(--color-orange-100);
+	--foreground: var(--color-orange-50);
 	--card: oklch(0.216 0.006 56.043);
 	--card-foreground: var(--color-stone-100);
 	--popover: oklch(0.216 0.006 56.043);
 	--popover-foreground: var(--color-stone-100);
 	--primary: var(--color-orange-100);
-	--primary-foreground: var(--color-stone-900);
+	--primary-foreground: var(--color-stone-800);
 	--secondary: var(--color-stone-800);
 	--secondary-foreground: var(--color-orange-100);
-	--muted: var(--color-stone-300);
+	--muted: var(--color-stone-400);
 	--muted-foreground: var(--color-stone-700);
 	--accent: rgb(255, 125, 94);
 	--accent-foreground: var(--color-stone-950);
