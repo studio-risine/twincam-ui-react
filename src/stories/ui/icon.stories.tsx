@@ -1,11 +1,11 @@
-import { TwincamIcon } from '@/components/twincam-logo'
+import { LogoIcon } from '@/components/logo'
 import { Button, type ButtonProps } from '@/components/ui/button'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, within } from 'storybook/test'
 
 const meta = {
 	args: {
-		children: <TwincamIcon />,
+		children: <LogoIcon />,
 		onClick: fn(),
 	},
 	component: Button,

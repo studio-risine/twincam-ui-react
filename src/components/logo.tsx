@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 
-export function TwincamIcon(props: SVGProps<SVGSVGElement>) {
+export function LogoIcon(props: SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			className="text-accent"
@@ -22,11 +22,11 @@ export function TwincamIcon(props: SVGProps<SVGSVGElement>) {
 	)
 }
 
-export function TwincamLogo() {
+export function Logo() {
 	return (
 		<div className="flex items-center gap-1">
-			<TwincamIcon />
-			<b className="font-extrabold text-2xl text-primary">twincam ui</b>
+			<LogoIcon />
+			<b className="font-extrabold text-2xl text-primary">tc96ui</b>
 		</div>
 	)
 }

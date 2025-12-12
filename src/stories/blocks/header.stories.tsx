@@ -1,10 +1,29 @@
 import { Header, HeaderCenter, HeaderLeft, HeaderRight } from '@/components/blocks/header'
-import { TwincamLogo } from '@/components/twincam-logo'
+import { Logo } from '@/components/logo'
 import { Button } from '@/components/ui/button'
-import { NavigationLinks } from '@/components/ui/navigation-links'
+import { type NavigationItem, NavigationLinks } from '@/components/ui/navigation-links'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Sun } from 'lucide-react'
 import { expect, within } from 'storybook/test'
+
+const navigationItemsLinks = [
+	{
+		href: '/',
+		title: 'Home',
+	},
+	{
+		href: '/about',
+		title: 'About',
+	},
+	{
+		href: '/pricing',
+		title: 'Pricing',
+	},
+	{
+		href: '/contact',
+		title: 'Contact',
+	},
+] satisfies NavigationItem[]
 
 const meta = {
 	component: Header,
@@ -24,35 +43,7 @@ export const Default: Story = {
 		children: (
 			<NavigationLinks
 				data={{
-					groups: [
-						{
-							items: [
-								{
-									description: 'View detailed API documentation',
-									href: '/api',
-									title: 'API Reference',
-								},
-								{
-									description: 'Learn about best practices',
-									href: '/guides',
-									title: 'Guides',
-								},
-							],
-							title: 'Resources',
-						},
-					],
-					items: [
-						{
-							description: 'Learn how to get started with our platform',
-							href: '/',
-							title: 'Home',
-						},
-						{
-							description: 'Browse our component library and examples',
-							href: '/components',
-							title: 'Components',
-						},
-					],
+					items: navigationItemsLinks,
 				}}
 			/>
 		),
@@ -66,7 +57,7 @@ export const Default: Story = {
 	render: ({ children }) => (
 		<Header>
 			<HeaderLeft>
-				<TwincamLogo />
+				<Logo />
 			</HeaderLeft>
 			<HeaderCenter>{children}</HeaderCenter>
 			<HeaderRight>
@@ -84,35 +75,7 @@ export const WithAuthButtons: Story = {
 		children: (
 			<NavigationLinks
 				data={{
-					groups: [
-						{
-							items: [
-								{
-									description: 'View detailed API documentation',
-									href: '/api',
-									title: 'API Reference',
-								},
-								{
-									description: 'Learn about best practices',
-									href: '/guides',
-									title: 'Guides',
-								},
-							],
-							title: 'Resources',
-						},
-					],
-					items: [
-						{
-							description: 'Learn how to get started with our platform',
-							href: '/',
-							title: 'Home',
-						},
-						{
-							description: 'Browse our component library and examples',
-							href: '/components',
-							title: 'Components',
-						},
-					],
+					items: navigationItemsLinks,
 				}}
 			/>
 		),
@@ -120,7 +83,7 @@ export const WithAuthButtons: Story = {
 	render: ({ children }) => (
 		<Header>
 			<HeaderLeft>
-				<TwincamLogo />
+				<Logo />
 			</HeaderLeft>
 			<HeaderCenter>{children}</HeaderCenter>
 			<HeaderRight>

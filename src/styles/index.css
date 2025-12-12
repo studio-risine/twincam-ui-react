@@ -10,7 +10,7 @@
 	--radius: 0.625rem;
 	--background: var(--color-orange-50);
 	--foreground: var(--color-stone-900);
-	--card: var(--color-stone-50);
+	--card: var(--color-orange-100);
 	--card-foreground: var(--color-stone-950);
 	--popover: var(--color-stone-50);
 	--popover-foreground: var(--color-stone-950);
@@ -24,7 +24,7 @@
 	--accent-foreground: var(--color-stone-900);
 	--destructive: var(--color-red-800);
 	--destructive-foreground: var(--color-white);
-	--border: var(--color-stone-300);
+	--border: var(--color-orange-100);
 	--input: oklch(0.923 0.003 48.717);
 	--ring: oklch(0.709 0.01 56.259);
 	--chart-1: oklch(0.646 0.222 41.116);
@@ -45,8 +45,8 @@
 .dark {
 	--background: var(--color-stone-950);
 	--foreground: var(--color-orange-50);
-	--card: oklch(0.216 0.006 56.043);
-	--card-foreground: var(--color-stone-100);
+	--card: var(--color-stone-900);
+	--card-foreground: var(--color-stone-200);
 	--popover: oklch(0.216 0.006 56.043);
 	--popover-foreground: var(--color-stone-100);
 	--primary: var(--color-orange-100);

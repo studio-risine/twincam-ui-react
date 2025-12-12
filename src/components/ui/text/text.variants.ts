@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority'
 
-export const textVariants = cva('leading-normal text-foreground', {
+export const textVariants = cva('leading-normal font-normal', {
 	defaultVariants: {
 		size: 'base',
 		variant: 'primary',

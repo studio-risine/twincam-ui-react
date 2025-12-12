@@ -22,9 +22,9 @@ const meta = {
 			options: ['sm', 'base', 'lg', 'xl', '2xl'],
 		},
 	},
-	component: ({ children }) => (
-		<MainContent data-testid="main-content" size="base">
-			{children}
+	component: (args) => (
+		<MainContent data-testid="main-content" {...args}>
+			{args.children}
 		</MainContent>
 	),
 	parameters: {
@@ -39,30 +39,29 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-	args: {
-		size: 'base',
-	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const main = canvas.getByTestId('main-content')
+		const element = canvas.getByTestId('main-content')
 
-		await expect(main).toBeInTheDocument()
-		await expect(main).toHaveAttribute('data-slot', 'main-content')
-		await expect(main).toHaveClass(/max-w-3xl/)
-		await expect(main).toHaveClass(/flex/)
-		await expect(main).toHaveClass(/flex-col/)
+		await expect(element).toBeInTheDocument()
+		await expect(element).toHaveAttribute('data-slot', 'main-content')
+		await expect(element).toHaveClass(/flex/)
+		await expect(element).toHaveClass(/flex-col/)
+		await expect(element).toHaveClass(/max-w-3xl/)
 	},
 }
 
 export const Small: Story = {
 	args: {
-		size: 'sm',
+		size: 'base',
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const main = canvas.getByTestId('main-content')
+		const element = canvas.getByTestId('main-content')
 
-		await expect(main).toHaveClass(/max-w-2xl/)
+		await expect(element).toBeInTheDocument()
+		await expect(element).toHaveAttribute('data-slot', 'main-content')
+		await expect(element).toHaveClass(/max-w-3xl/)
 	},
 }
 
@@ -72,9 +71,11 @@ export const Large: Story = {
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const main = canvas.getByTestId('main-content')
+		const element = canvas.getByTestId('main-content')
 
-		await expect(main).toHaveClass(/max-w-4xl/)
+		await expect(element).toBeInTheDocument()
+		await expect(element).toHaveAttribute('data-slot', 'main-content')
+		await expect(element).toHaveClass(/max-w-4xl/)
 	},
 }
 
@@ -84,9 +85,11 @@ export const ExtraLarge: Story = {
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const main = canvas.getByTestId('main-content')
+		const element = canvas.getByTestId('main-content')
 
-		await expect(main).toHaveClass(/max-w-6xl/)
+		await expect(element).toBeInTheDocument()
+		await expect(element).toHaveAttribute('data-slot', 'main-content')
+		await expect(element).toHaveClass(/max-w-6xl/)
 	},
 }
 
@@ -96,8 +99,10 @@ export const ExtraExtraLarge: Story = {
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const main = canvas.getByTestId('main-content')
+		const element = canvas.getByTestId('main-content')
 
-		await expect(main).toHaveClass(/max-w-7xl/)
+		await expect(element).toBeInTheDocument()
+		await expect(element).toHaveAttribute('data-slot', 'main-content')
+		await expect(element).toHaveClass(/max-w-7xl/)
 	},
 }
