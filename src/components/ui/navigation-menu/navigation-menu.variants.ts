@@ -59,15 +59,3 @@ export const navigationMenuContentVariants = cva(
 		},
 	},
 )
-
-export const navigationMenuLinkVariants = cva(
-	'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-foreground/5 hover:text-foreground focus:bg-foreground/5 focus:text-foreground',
-)
-
-export const navigationMenuIndicatorVariants = cva(
-	'top-full z-1 flex h-1.5 items-end justify-center overflow-hidden data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in',
-)
-
-export const navigationMenuViewportVariants = cva(
-	'origin-top-center relative mt-1.5 h-(--radix-navigation-menu-viewport-height) w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-(--radix-navigation-menu-viewport-width)',
-)

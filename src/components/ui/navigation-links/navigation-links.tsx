@@ -12,7 +12,7 @@ import {
 export interface NavigationItem {
 	title: string
 	href: string
-	description: string
+	description?: string
 }
 
 export interface NavigationGroup {
@@ -47,20 +47,18 @@ export const NavigationLinks = memo<NavigationLinksProps>(
 						<NavigationMenuItem key={group.title}>
 							<NavigationMenuTrigger orientation={orientation}>{group.title}</NavigationMenuTrigger>
 							<NavigationMenuContent orientation={orientation}>
-								<ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+								<nav className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
 									{group.items.map((item) => (
-										<li key={item.href}>
-											<NavigationMenuLink href={item.href}>
-												<div className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-foreground/5 hover:text-foreground focus:bg-foreground/5 focus:text-foreground">
-													<div className="font-medium text-sm leading-none">{item.title}</div>
-													<p className="mt-2 line-clamp-2 text-muted-foreground text-sm leading-snug">
-														{item.description}
-													</p>
-												</div>
-											</NavigationMenuLink>
-										</li>
+										<NavigationMenuLink href={item.href} key={item.href}>
+											<div className="block select-none space-y-1 rounded-md">
+												{item.title}
+												<small className="line-clamp-2 text-foreground/70 text-sm leading-snug">
+													{item.description}
+												</small>
+											</div>
+										</NavigationMenuLink>
 									))}
-								</ul>
+								</nav>
 							</NavigationMenuContent>
 						</NavigationMenuItem>
 					))}

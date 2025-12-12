@@ -6,12 +6,9 @@ import type { ComponentProps, ComponentRef } from 'react'
 import { forwardRef, memo } from 'react'
 import {
 	navigationMenuContentVariants,
-	navigationMenuIndicatorVariants,
-	navigationMenuLinkVariants,
 	navigationMenuListVariants,
 	navigationMenuRootVariants,
 	navigationMenuTriggerVariants,
-	navigationMenuViewportVariants,
 } from './navigation-menu.variants'
 
 export interface NavigationMenuItemData {
@@ -99,7 +96,7 @@ export const NavigationMenuLink = memo(
 	forwardRef<ComponentRef<typeof NavigationMenuPrimitive.Link>, NavigationMenuLinkProps>(
 		({ className, ...props }, ref) => (
 			<NavigationMenuPrimitive.Link
-				className={cn(navigationMenuLinkVariants(), className)}
+				className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-foreground/10 hover:text-foreground focus:bg-foreground/5 focus:text-foreground"
 				ref={ref}
 				{...props}
 			/>
@@ -115,7 +112,7 @@ export const NavigationMenuIndicator = forwardRef<
 	NavigationMenuIndicatorProps
 >(({ className, ...props }, ref) => (
 	<NavigationMenuPrimitive.Indicator
-		className={cn(navigationMenuIndicatorVariants(), className)}
+		className="data-[state=hidden]:fade-out data-[state=visible]:fade-in top-full z-1 flex h-1.5 items-end justify-center overflow-hidden data-[state=hidden]:animate-out data-[state=visible]:animate-in"
 		ref={ref}
 		{...props}
 	>
@@ -132,7 +129,7 @@ export const NavigationMenuViewport = forwardRef<
 >(({ className, ...props }, ref) => (
 	<div className={cn('absolute top-full left-0 flex justify-center')}>
 		<NavigationMenuPrimitive.Viewport
-			className={cn(navigationMenuViewportVariants(), className)}
+			className="data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 relative mt-1.5 h-(--radix-navigation-menu-viewport-height) w-full origin-top-center overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-lg data-[state=closed]:animate-out data-[state=open]:animate-in md:w-(--radix-navigation-menu-viewport-width)"
 			ref={ref}
 			{...props}
 		/>
