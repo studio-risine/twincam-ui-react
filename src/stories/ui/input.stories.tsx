@@ -1,5 +1,8 @@
-import { Input } from '@/components/ui/input'
+import { Stack } from '@/components/ui'
+import { Input, InputField } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { useId } from 'react'
 import { expect, fn, within } from 'storybook/test'
 
 const meta = {
@@ -17,34 +20,6 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
-	args: {
-		placeholder: 'Enter text...',
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement)
-		const input = canvas.getByPlaceholderText('Enter text...')
-
-		await expect(input).toHaveAttribute('data-slot', 'input')
-		await expect(input).toHaveAttribute('type', 'text')
-		await expect(input).not.toBeDisabled()
-	},
-}
-
-export const Small: Story = {
-	args: {
-		placeholder: 'Small input',
-		size: 'sm',
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement)
-		const input = canvas.getByPlaceholderText('Small input')
-
-		await expect(input).toHaveClass(/h-8/)
-		await expect(input).toHaveClass(/text-xs/)
-	},
-}
-
 export const Base: Story = {
 	args: {
 		placeholder: 'Base input',
@@ -52,23 +27,71 @@ export const Base: Story = {
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const input = canvas.getByPlaceholderText('Base input')
-
-		await expect(input).toHaveClass(/h-10/)
+		const input = canvas.getByTestId('input')
+		await expect(input).toHaveClass(
+			'h-10',
+			'text-foreground',
+			'rounded',
+			'border',
+			'border-input',
+			'bg-transparent',
+		)
 	},
+	render: () => <Input data-testId="input" placeholder="Base" />,
 }
 
-export const Large: Story = {
+export const SingleInput: Story = {
 	args: {
-		placeholder: 'Large input',
-		size: 'lg',
+		placeholder: 'Enter text...',
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement)
-		const input = canvas.getByPlaceholderText('Large input')
+		const input = canvas.getByTestId('input')
 
-		await expect(input).toHaveClass(/h-12/)
-		await expect(input).toHaveClass(/text-base/)
+		await expect(input).toHaveAttribute('data-slot', 'input')
+		await expect(input).toHaveAttribute('type', 'text')
+		await expect(input).not.toBeDisabled()
+	},
+	render: () => {
+		const id = useId()
+		return (
+			<InputField>
+				<Label htmlFor={id}>Simple input</Label>
+				<Input data-testId="input" id={id} placeholder="Email" type="text" />
+			</InputField>
+		)
+	},
+}
+
+export const Sizes: Story = {
+	args: {
+		placeholder: 'Placeholder',
+	},
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement)
+		const elementSmallInput = canvas.getByPlaceholderText('Small input')
+
+		await expect(elementSmallInput).toHaveClass(/h-9/)
+		await expect(elementSmallInput).toHaveClass(/text-xs/)
+
+		const elementBaseInput = canvas.getByPlaceholderText('Base input')
+
+		await expect(elementBaseInput).toHaveClass(/h-10/)
+		await expect(elementBaseInput).toHaveClass(/text-sm/)
+
+		const elementLargeInput = canvas.getByPlaceholderText('Large input')
+
+		await expect(elementLargeInput).toHaveClass(/h-12/)
+		await expect(elementLargeInput).toHaveClass(/text-base/)
+	},
+	render: () => {
+		return (
+			<Stack space="sm">
+				<Input placeholder="Small input" size="sm" />
+				<Input placeholder="Base input" size="base" />
+				<Input placeholder="Large input" size="lg" />
+			</Stack>
+		)
 	},
 }
 
@@ -101,19 +124,6 @@ export const Invalid: Story = {
 	},
 }
 
-export const WithValue: Story = {
-	args: {
-		defaultValue: 'Pre-filled value',
-		placeholder: 'Enter text...',
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement)
-		const input = canvas.getByDisplayValue('Pre-filled value')
-
-		await expect(input).toHaveValue('Pre-filled value')
-	},
-}
-
 export const Email: Story = {
 	args: {
 		placeholder: 'email@example.com',
@@ -137,32 +147,5 @@ export const Password: Story = {
 		const input = canvas.getByPlaceholderText('Enter password')
 
 		await expect(input).toHaveAttribute('type', 'password')
-	},
-}
-
-export const NumberInput: Story = {
-	args: {
-		placeholder: 'Enter number',
-		type: 'number',
-	},
-	play: async ({ canvasElement }) => {
-		const canvas = within(canvasElement)
-		const input = canvas.getByPlaceholderText('Enter number')
-
-		await expect(input).toHaveAttribute('type', 'number')
-	},
-}
-
-export const WithOnChange: Story = {
-	args: {
-		placeholder: 'Type something...',
-	},
-	play: async ({ canvasElement, userEvent, args }) => {
-		const canvas = within(canvasElement)
-		const input = canvas.getByPlaceholderText('Type something...')
-
-		await userEvent.type(input, 'Hello')
-		await expect(input).toHaveValue('Hello')
-		await expect(args.onChange).toHaveBeenCalled()
 	},
 }

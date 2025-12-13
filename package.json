@@ -47,14 +47,15 @@
 		]
 	},
 	"peerDependencies": {
+		"lucide-react": "^0.552.0",
 		"react": ">=19",
 		"react-dom": ">=19",
-		"tailwindcss": "^4.1.17",
-		"lucide-react": "^0.552.0"
+		"tailwindcss": "^4.1.17"
 	},
 	"dependencies": {
 		"@changesets/cli": "^2.29.7",
 		"@radix-ui/react-avatar": "^1.1.11",
+		"@radix-ui/react-label": "^2.1.8",
 		"@radix-ui/react-navigation-menu": "^1.2.14",
 		"@radix-ui/react-slot": "^1.2.4",
 		"@tailwindcss/vite": "^4.1.17",
