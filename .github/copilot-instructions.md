@@ -156,7 +156,6 @@ export const Default: Story = {
 ### Version Management & Publishing
 - Uses **Changesets** for version management (see [.changeset/config.json](.changeset/config.json))
 - Run `pnpm changeset` to document changes after completing features
-- Current version tracked in [package.json](package.json) (`0.8.7`)
 - Follows semantic versioning with conventional commits (via `@commitlint/config-conventional`)
 - Run `pnpm build` before publishing to generate `dist/` artifacts
 
