@@ -3,7 +3,7 @@ import type { SVGProps } from 'react'
 export function LogoIcon(props: SVGProps<SVGSVGElement>) {
 	return (
 		<svg
-			className="text-accent"
+			className="text-primary"
 			fill="none"
 			height="40"
 			viewBox="0 0 16 16"
@@ -26,7 +26,7 @@ export function Logo() {
 	return (
 		<div className="flex items-center gap-1">
 			<LogoIcon />
-			<b className="font-extrabold text-2xl text-primary">tc96ui</b>
+			<b className="font-extrabold text-2xl text-accent">tc96ui</b>
 		</div>
 	)
 }

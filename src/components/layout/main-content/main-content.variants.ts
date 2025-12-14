@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority'
 
 export const mainContentVariants = cva(
-	'flex flex-col px-6 py-6 md:py-10 lg:py-14 w-full mx-auto gap-6 lg:gap-10',
+	'container mx-auto flex h-20 items-center justify-between px-4 md:px-6',
 	{
 		defaultVariants: {
 			size: 'base',
