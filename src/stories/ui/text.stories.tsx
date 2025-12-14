@@ -73,7 +73,7 @@ export const Variant: Story = {
 		const canvas = within(canvasElement)
 
 		const variantCases = [
-			{ className: 'text-primary', text: 'Primary color' },
+			{ className: 'text-foreground', text: 'Foreground color' },
 			{ className: 'text-muted', text: 'Muted color' },
 		]
 
@@ -87,8 +87,8 @@ export const Variant: Story = {
 	},
 	render: () => (
 		<div className="space-y-4">
-			<Text data-testid="text-primary" variant="primary">
-				Primary color
+			<Text data-testid="text-foreground" variant="foreground">
+				Foreground color
 			</Text>
 			<Text data-testid="text-muted" variant="muted">
 				Muted color

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.7.5
+
+### Fixes
+
+- **Text Component**: Restored backward compatibility for `variant="primary"` prop
+  - `variant="primary"` is now an alias for the new default `variant="foreground"`
+  - Existing code using `variant="primary"` will continue to work without breaking changes
+  - **Migration Note**: For future upgrades, remove the `variant="primary"` prop to use the default, or explicitly use `variant="foreground"` for clarity
+
 ## 0.7.4
 
 ### Major Changes

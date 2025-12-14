@@ -59,3 +59,7 @@ export const navigationMenuContentVariants = cva(
 		},
 	},
 )
+
+export const navigationMenuLinkVariants = cva(
+	'block select-none space-y-1 rounded-sm bg-transparent p-3 px-4 font-semibold text-sm leading-none outline-none transition-colors hover:bg-accent/5 focus:bg-accent/10 focus:text-foreground',
+)

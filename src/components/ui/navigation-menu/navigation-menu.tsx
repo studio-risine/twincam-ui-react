@@ -6,6 +6,7 @@ import type { ComponentProps, ComponentRef } from 'react'
 import { forwardRef, memo } from 'react'
 import {
 	navigationMenuContentVariants,
+	navigationMenuLinkVariants,
 	navigationMenuListVariants,
 	navigationMenuRootVariants,
 	navigationMenuTriggerVariants,
@@ -96,7 +97,7 @@ export const NavigationMenuLink = memo(
 	forwardRef<ComponentRef<typeof NavigationMenuPrimitive.Link>, NavigationMenuLinkProps>(
 		({ className, ...props }, ref) => (
 			<NavigationMenuPrimitive.Link
-				className="block select-none space-y-1 rounded-sm p-3 px-4 leading-none outline-none transition-colors hover:text-foreground hover:underline hover:underline-offset-4 focus:bg-foreground/5 focus:text-foreground"
+				className={cn(navigationMenuLinkVariants(), className)}
 				ref={ref}
 				{...props}
 			/>

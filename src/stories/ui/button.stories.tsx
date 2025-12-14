@@ -43,7 +43,7 @@ export const Default: Story = {
 		await expect(button).toHaveRole('button')
 		await expect(button).toHaveAttribute('data-slot', 'button')
 		await expect(button).toHaveTextContent('Button')
-		await expect(button).toHaveClass(/bg-primary/)
+		await expect(button).toHaveClass('bg-primary text-primary-foreground hover:bg-primary/80')
 		await expect(button).toHaveClass(/rounded-sm/)
 
 		await expect(button).not.toBeDisabled()
@@ -134,8 +134,9 @@ export const Link: Story = {
 		const canvas = within(canvasElement)
 		const button = canvas.getByRole('button')
 
-		await expect(button).toHaveClass(/text-primary/)
-		await expect(button).toHaveClass(/underline-offset-4/)
+		await expect(button).toHaveClass(
+			'text-foreground underline-offset-2 underline hover:underline-offset-4',
+		)
 	},
 }
 

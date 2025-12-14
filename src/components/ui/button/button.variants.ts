@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority'
 
 export const buttonVariants = cva(
-	'inline-flex items-center justify-center gap-2 transition-colors ease-linear duration-75 whitespace-nowrap rounded-sm font-semibold disabled:pointer-events-none disabled:bg-primary/30 disabled:border-primary/30 disabled:text-primary/50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 ring-ring/10 dark:ring-ring/20 dark:outline-ring/40 outline-ring/50 focus-visible:ring-4 focus-visible:outline-1 aria-invalid:focus-visible:ring-0',
+	'inline-flex items-center justify-center gap-2 transition-colors ease-linear duration-150 whitespace-nowrap rounded-sm font-semibold disabled:pointer-events-none disabled:bg-foreground/30 disabled:border-foreground/30 disabled:text-foreground/80 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 [&_svg]:shrink-0 ring-ring/10 dark:ring-ring/20 dark:outline-ring/40 outline-ring/50 focus-visible:ring-4 focus-visible:outline-1 aria-invalid:focus-visible:ring-0',
 	{
 		compoundVariants: [
 			{
@@ -38,10 +38,10 @@ export const buttonVariants = cva(
 			variant: {
 				accent: 'bg-accent text-accent-foreground hover:bg-accent/80',
 				destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-				ghost: 'bg-transparent text-foreground hover:bg-primary/10 hover:text-foreground',
-				link: 'text-primary underline-offset-4 hover:underline',
-				outline:
-					'border border-foreground/20 bg-transparent hover:bg-foreground/10 text-foreground',
+				ghost:
+					'border border-transparent bg-transparent text-secondary-foreground hover:bg-accent/5 focus:bg-accent/10',
+				link: 'text-foreground underline-offset-2 underline hover:underline-offset-4',
+				outline: 'border bg-transparent hover:bg-accent/5 text-secondary-foreground',
 				primary: 'bg-primary text-primary-foreground hover:bg-primary/80',
 				secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
 			},
