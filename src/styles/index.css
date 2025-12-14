@@ -2,8 +2,6 @@
 
 @source not "../stories/**/*.{js,ts,jsx,tsx,mdx}";
 
-@plugin "tailwindcss-animate";
-
 @custom-variant dark (&:is(.dark *));
 
 :root {

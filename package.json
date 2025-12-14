@@ -1,7 +1,7 @@
 {
 	"name": "@tc96/ui-react",
 	"private": false,
-	"version": "0.8.3",
+	"version": "0.8.4",
 	"files": [
 		"dist",
 		"./src/styles/index.css"
@@ -19,8 +19,8 @@
 			"require": "./dist/index.js",
 			"default": "./dist/index.mjs"
 		},
-		"./styles.css": "./dist/index.css",
-		"./index.css": "./src/styles/index.css"
+		"./styles.css": "./src/styles/index.css",
+		"./dist/styles.css": "./dist/index.css"
 	},
 	"scripts": {
 		"dev": "storybook dev -p 6006",
@@ -90,7 +90,6 @@
 		"npm-check-updates": "^19.1.2",
 		"playwright": "^1.56.1",
 		"storybook": "^10.1.4",
-		"tailwindcss-animate": "^1.0.7",
 		"typescript": "~5.9.3",
 		"vite": "^7.2.2",
 		"vite-plugin-dts": "^4.5.4",
