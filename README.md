@@ -52,8 +52,17 @@ Import the styles once (recommended in your app entry):
 
 ```ts
 // app entry (e.g., src/main.tsx)
-import '@tc96/ui-react/styles.css'
+import '@tc96/ui-react/dist/styles.css'
 ```
+
+> [!NOTE]
+> The import above (`dist/styles.css`) contains the pre-processed CSS with all Tailwind styles generated. This is recommended for most users.
+> 
+> **Advanced Usage**: If you want to run your own Tailwind/PostCSS pipeline, you can import the source CSS:
+> ```ts
+> import '@tc96/ui-react/styles.css' // Contains @theme, @apply, etc.
+> ```
+> *Requires Tailwind CSS 4 and PostCSS configured in your project.*
 
 Use components in your app:
 

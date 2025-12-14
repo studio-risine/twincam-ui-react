@@ -96,7 +96,7 @@ export const NavigationMenuLink = memo(
 	forwardRef<ComponentRef<typeof NavigationMenuPrimitive.Link>, NavigationMenuLinkProps>(
 		({ className, ...props }, ref) => (
 			<NavigationMenuPrimitive.Link
-				className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-foreground/10 hover:text-foreground focus:bg-foreground/5 focus:text-foreground"
+				className="block select-none space-y-1 rounded-sm p-3 px-4 leading-none outline-none transition-colors hover:text-foreground hover:underline hover:underline-offset-4 focus:bg-foreground/5 focus:text-foreground"
 				ref={ref}
 				{...props}
 			/>
