@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 export const textVariants = cva('leading-normal font-normal', {
 	defaultVariants: {
 		size: 'base',
-		variant: 'primary',
+		variant: 'foreground',
 	},
 	variants: {
 		size: {
@@ -13,8 +13,8 @@ export const textVariants = cva('leading-normal font-normal', {
 			xl: 'text-xl',
 		},
 		variant: {
+			foreground: 'text-foreground',
 			muted: 'text-muted',
-			primary: 'text-foreground',
 		},
 	},
 })

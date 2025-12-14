@@ -45,9 +45,7 @@ export const Default: Story = {
 
 		await expect(element).toBeInTheDocument()
 		await expect(element).toHaveAttribute('data-slot', 'main-content')
-		await expect(element).toHaveClass(/flex/)
-		await expect(element).toHaveClass(/flex-col/)
-		await expect(element).toHaveClass(/max-w-3xl/)
+		await expect(element).toHaveClass('container', 'max-w-3xl')
 	},
 }
 
